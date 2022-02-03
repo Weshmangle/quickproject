@@ -6,12 +6,20 @@ public class DefilMap : MonoBehaviour
 
     void Update()
     {
-        Movement();
-
-        if (this.transform.position.x <= -100)
+        if (GameManager.gameOver)
         {
-            DeleteObject();
+
         }
+        else if (!GameManager.gameOver)
+        {
+            Movement();
+
+            if (this.transform.position.x <= -100)
+            {
+                DeleteObject();
+            }
+        }
+        
     }
 
     private void Movement()

@@ -12,18 +12,28 @@ public class MapManager : MonoBehaviour
     //instantiation des terrain
     //supression des terrain
 
-    public GameObject[] _obstacle, _bonus, _floor;
+    public static MapManager Instance;
+    public GameObject[] _obstacle, _bonus, _floor, objectExistList;
     public static float mapDefilementSpeed = 20;
+    
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Instance of MapManager already exist");
+            return;
+        }
 
+        Instance = this;
+    }
     public void GenerateNewMap()
     {
         
     }
     public void DeleteOldMap()
     {
-
+        
     }
-    
 
     //test
     public void CreatMap()
@@ -32,6 +42,4 @@ public class MapManager : MonoBehaviour
         floor.transform.SetParent(this.transform);
         floor.GetComponent<DefilMap>().defilSpeed = mapDefilementSpeed;
     }
-
-    
 }

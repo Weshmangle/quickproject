@@ -397,6 +397,7 @@ MonoBehaviour:
   _bonus: []
   _floor:
   - {fileID: 5340129014356528242, guid: 5f6edcd1a2a4e4d4a91aa37d63d24450, type: 3}
+  objectExistList: []
 --- !u!4 &768475478
 Transform:
   m_ObjectHideFlags: 0
@@ -1379,6 +1380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1f8fcff9713a14286e9b918fdfac62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boutonStart: {fileID: 2031054146}
   distanceTraveled: 0
   scoreText: {fileID: 1154454535}
   lastScoreText: {fileID: 1149487379}
@@ -1484,6 +1486,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1985485109}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: GameStart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
