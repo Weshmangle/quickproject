@@ -26,12 +26,4 @@ public class DefilMap : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.tag == "Player" && this.transform.tag == "Enemy")
-        {
-            GameManager.Instance.GameOver();
-        }
-    }
 }
