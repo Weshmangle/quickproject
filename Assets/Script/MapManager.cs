@@ -13,7 +13,7 @@ public class MapManager : MonoBehaviour
     //supression des terrain
 
     public GameObject[] _obstacle, _bonus, _floor;
-    public float mapDefilementSpeed = 20;
+    public static float mapDefilementSpeed = 20;
 
     public void GenerateNewMap()
     {
