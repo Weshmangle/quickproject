@@ -6,21 +6,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public float DistanceTraveled; // score
     public bool IsGameOver = true;
-
     private string _filePath;
     private float _actualDist, _bestDist;
 
-<<<<<<< HEAD
-    public static GameManager Instance;
-
-    public float distanceTraveled;
-
-    float actualDist, bestDist;
-    
-=======
     [SerializeField] private GameObject _boutonStart;
 
->>>>>>> 954ee498c714df8d3bb3fe48be9e3ca9ecbee6f7
     private void Awake()
     {
         _filePath = Application.persistentDataPath + "/score.txt";
@@ -44,17 +34,9 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-<<<<<<< HEAD
-        actualDist = distanceTraveled;
-        UIManager.Instance.SetLastScore(distanceTraveled);
-        if (actualDist > bestDist)
-=======
-        Debug.Log(("game over", Application.persistentDataPath));
-
         _actualDist = DistanceTraveled;
         UIManager.Instance.SetLastScore(DistanceTraveled);
         if (_actualDist > _bestDist)
->>>>>>> 954ee498c714df8d3bb3fe48be9e3ca9ecbee6f7
         {
             _bestDist = _actualDist;
             UIManager.Instance.SetBestScore(_bestDist);
@@ -80,11 +62,7 @@ public class GameManager : MonoBehaviour
         DataScore score = new DataScore() { HighScore = bestScore, LastScore = actualScore };
         File.WriteAllText(_filePath, JsonUtility.ToJson(score));
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> 954ee498c714df8d3bb3fe48be9e3ca9ecbee6f7
     public void GameStart()
     {
         IsGameOver = false;
