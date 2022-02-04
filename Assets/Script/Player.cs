@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
             _meshes[0].SetActive(true);
             _meshes[1].SetActive(false);
         }
-
     }
 
     private void Crouch()
