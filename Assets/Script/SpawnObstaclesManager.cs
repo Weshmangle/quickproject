@@ -9,21 +9,6 @@ public class SpawnObstaclesManager : MonoBehaviour
         get { return _delay; }
         private set { _delay = value; }
     }
-    public bool SpawnObstacle
-    {
-        get
-        {
-            return _spawnObstacle;
-        }
-        private set
-        {
-            _spawnObstacle = value;
-            if (!_spawnObstacle)
-            {
-                StopAllCoroutines();
-            }
-        }
-    }
 
     [SerializeField] private float _delay = 1;
 
@@ -40,11 +25,6 @@ public class SpawnObstaclesManager : MonoBehaviour
         }
 
         Instance = this;
-    }
-
-    private void Start()
-    {
-        StartSpawn();
     }
 
     private IEnumerator SpawnAfterTime()
@@ -64,8 +44,23 @@ public class SpawnObstaclesManager : MonoBehaviour
         return _prefabs[Random.Range(0, _prefabs.Length)];
     }
 
-    private void StartSpawn()
+    public void StartSpawn()
     {
+        _spawnObstacle = true;
         StartCoroutine(SpawnAfterTime());
+    }
+
+    public void StopSpawn()
+    {
+        _spawnObstacle = false;
+        StopAllCoroutines();
+    }
+
+    public void DeleteAllObstacles()
+    {
+        foreach (Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

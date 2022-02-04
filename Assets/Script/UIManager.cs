@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
+    [SerializeField] private Button _startButton;
 
     private void Start()
     {
@@ -36,5 +37,10 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         GameManager.Instance.GameStart();
+    }
+
+    public void ShowHideStartButton(bool value)
+    {
+        _startButton.gameObject.SetActive(value);
     }
 }

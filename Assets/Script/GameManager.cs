@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     private int _bestDist;
     private float remainingTimeBeforeAddScore = 1;
     private string _filePath;
-    private bool _isGameOver;
+    private bool _isGameOver = true;
 
     private void Awake()
     {
@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         IsGameOver = true;
+        SpawnObstaclesManager.Instance.StopSpawn();
         UIManager.Instance.SetLastScore(_distanceTraveled);
         if (_distanceTraveled > _bestDist)
         {
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         SaveScore(_bestDist, _distanceTraveled);
 
         _distanceTraveled = 0;
+        UIManager.Instance.ShowHideStartButton(true);
     }
 
 
@@ -87,8 +89,11 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        SpawnObstaclesManager.Instance.DeleteAllObstacles();
+        UIManager.Instance.ShowHideStartButton(false);
         IsGameOver = false;
         Time.timeScale = 1;
         _distanceTraveled = 0;
+        SpawnObstaclesManager.Instance.StartSpawn();
     }
 }
