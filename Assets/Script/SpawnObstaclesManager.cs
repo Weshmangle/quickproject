@@ -37,7 +37,7 @@ public class SpawnObstaclesManager : MonoBehaviour
             GameObject prefab = GetRandomPrefab();
             GameObject instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
             instance.name = prefab.name;
-            float scale = Random.Range(.5f, 1f);
+            float scale = Random.Range(.5f, 1.5f);
             instance.transform.localScale = new Vector3(scale, scale, scale);
 
             if (instance.GetComponent<Obstacle>().IsGroundedObject)

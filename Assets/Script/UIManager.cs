@@ -21,17 +21,17 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int score)
     {
-        _scoreText.text = $"Distance parcourue: {score}";
+        _scoreText.text = $"Distance: {score}";
     }
 
     public void SetBestScore(int score)
     {
-        _bestScoreText.text = $" Plus loin attein: {score}";
+        _bestScoreText.text = $"Best: {score}";
     }
 
     public void SetLastScore(int score)
     {
-        _lastScoreText.text = $"Derniere distance atteinte: {score}";
+        _lastScoreText.text = $"Last: {score}";
     }
 
     public void StartGame()
