@@ -1,31 +1,31 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] Rigidbody myRb;
-    public float jumpHeight;
-    public Vector3 jump;
-    public float jumpForce = 2.0f;
+    public float JumpHeight;
+    public Vector3 Jump;
+    public float JumpForce = 2.0f;
+    public bool IsGrounded;
      
-    public bool isGrounded;
-    Rigidbody rb;
+    private Rigidbody _rb;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 2.0f, 0.0f);
+        _rb = GetComponent<Rigidbody>();
+        Jump = new Vector3(0.0f, 2.0f, 0.0f);
     }
      
     void OnCollisionStay()
     {
-        isGrounded = true;
+        IsGrounded = true;
     }
      
      void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if(Input.GetKeyDown(KeyCode.Space) && IsGrounded)
         {    
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            _rb.AddForce(Jump * JumpForce, ForceMode.Impulse);
+            IsGrounded = false;
         }
     }
     
