@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7297343956804968698}
   - component: {fileID: 8010593801663121547}
   m_Layer: 0
-  m_Name: Ennemi
+  m_Name: ennemi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -168,15 +168,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d40400c79d624d642a6234519d6229b3, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d40400c79d624d642a6234519d6229b3, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d40400c79d624d642a6234519d6229b3, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: d40400c79d624d642a6234519d6229b3, type: 3}
       propertyPath: m_LocalPosition.x
