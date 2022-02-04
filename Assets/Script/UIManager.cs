@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
+    [SerializeField] private Button _startButton;
 
     private void Start()
     {
@@ -18,17 +19,17 @@ public class UIManager : MonoBehaviour
         _instance = this;
     }
 
-    public void SetScore(float score)
+    public void SetScore(int score)
     {
         _scoreText.text = $"Distance parcourue: {score}";
     }
 
-    public void SetBestScore(float score)
+    public void SetBestScore(int score)
     {
         _bestScoreText.text = $" Plus loin attein: {score}";
     }
 
-    public void SetLastScore(float score)
+    public void SetLastScore(int score)
     {
         _lastScoreText.text = $"Derniere distance atteinte: {score}";
     }
@@ -36,5 +37,10 @@ public class UIManager : MonoBehaviour
     public void StartGame()
     {
         GameManager.Instance.GameStart();
+    }
+
+    public void ShowHideStartButton(bool value)
+    {
+        _startButton.gameObject.SetActive(value);
     }
 }

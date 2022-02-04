@@ -1,5 +1,5 @@
 public struct DataScore
 {
-    public float HighScore;
-    public float LastScore;
+    public int HighScore;
+    public int LastScore;
 }

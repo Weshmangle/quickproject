@@ -3,19 +3,18 @@ using System.Collections;
 
 public class SpawnObstaclesManager : MonoBehaviour
 {
-    //liste de prefab (obstacle, bonus, )
-    //position des object
-    //position de la map
-    //position limite de la map (en gros a partir de quand on suprime le vieux terrain et genere le nouveau)
-    //vitesse de defilement
-    //instantiation des terrain
-    //supression des terrain
-    
     public static SpawnObstaclesManager Instance;
+    public float Delay
+    {
+        get { return _delay; }
+        private set { _delay = value; }
+    }
 
-    private float _delay = 1;
+    [SerializeField] private float _delay = 1;
 
     [SerializeField] private GameObject[] _prefabs;
+
+    private bool _spawnObstacle = true;
 
     private void Awake()
     {
@@ -28,34 +27,40 @@ public class SpawnObstaclesManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        StartSpawn();
-    }
-
     private IEnumerator SpawnAfterTime()
     {
-        yield return new WaitForSeconds(_delay);
+        while (_spawnObstacle)
+        {
+            yield return new WaitForSeconds(_delay);
 
-        var instance = Instantiate(GetRandomPrefab(), transform.position, Quaternion.identity, transform);
-        var scale = Random.Range(0.5f, 1);
-        instance.transform.localScale = new Vector3(scale, scale, scale);
-
-        StartCoroutine(SpawnAfterTime());
+            var instance = Instantiate(GetRandomPrefab(), Vector3.zero, Quaternion.identity, transform);
+            var scale = Random.Range(.5f, 1f);
+            instance.transform.localScale = new Vector3(scale, scale, scale);
+            instance.transform.localPosition = Vector3.zero;
+        }
     }
     private GameObject GetRandomPrefab()
     {
         return _prefabs[Random.Range(0, _prefabs.Length)];
     }
 
-    public float Delay
-    {
-        get { return _delay; }
-        private set { _delay = value; }
-    }
-
     public void StartSpawn()
     {
+        _spawnObstacle = true;
         StartCoroutine(SpawnAfterTime());
+    }
+
+    public void StopSpawn()
+    {
+        _spawnObstacle = false;
+        StopAllCoroutines();
+    }
+
+    public void DeleteAllObstacles()
+    {
+        foreach (Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }
