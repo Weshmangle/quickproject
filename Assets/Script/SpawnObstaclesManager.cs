@@ -53,9 +53,10 @@ public class SpawnObstaclesManager : MonoBehaviour
         {
             yield return new WaitForSeconds(_delay);
 
-            var instance = Instantiate(GetRandomPrefab(), transform.position, Quaternion.identity, transform);
+            var instance = Instantiate(GetRandomPrefab(), Vector3.zero, Quaternion.identity, transform);
             var scale = Random.Range(.5f, 1f);
             instance.transform.localScale = new Vector3(scale, scale, scale);
+            instance.transform.localPosition = Vector3.zero;
         }
     }
     private GameObject GetRandomPrefab()
