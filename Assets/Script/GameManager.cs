@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance;
     public float distanceTraveled; // score
-    public Text scoreText, lastScoreText, bestScoreText;
 
     float actualDist, bestDist;
     private void Awake()
@@ -36,7 +35,7 @@ public class GameManager : MonoBehaviour
         if (!gameOver)
         {
             distanceTraveled += MapManager.mapDefilementSpeed * Time.deltaTime;
-            scoreText.text = $"Distance parcourue: {distanceTraveled}";
+            UIManager.Instance.SetScore(distanceTraveled);
         }
     }
     public void GameOver()
@@ -44,11 +43,11 @@ public class GameManager : MonoBehaviour
         Debug.Log(("game over", Application.persistentDataPath));
 
         actualDist = distanceTraveled;
-        lastScoreText.text = $"Derniere distance atteinte: {distanceTraveled}"; 
+        UIManager.Instance.SetLastScore(distanceTraveled);
         if (actualDist > bestDist)
         {
             bestDist = actualDist;
-            bestScoreText.text = $" Plus loin attein: {bestDist}";
+            UIManager.Instance.SetBestScore(bestDist);
         }
         distanceTraveled = 0.0f;
         
