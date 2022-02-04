@@ -1,46 +1,61 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    public float JumpForce = 10.0f;
-
-    private bool _isGrounded;
-    private Rigidbody _rb;
-
+    public GameObject[] crouchOrNotCrouch;
+    bool isCrouch = false;
+    public Vector3 jump;
+    public float jumpForce = 2.0f;     
+    public bool isGrounded;
+    Rigidbody rb;
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        jump = new Vector3(0.0f, 10.0f, 0.0f);
     }
-
-    private void OnCollisionEnter(Collision collision)
+     
+    void OnCollisionStay()
     {
-        if (collision.gameObject.tag == "Floor")
+        isGrounded = true;
+    }
+     
+     void Update()
+    {
+        Jump();
+        if(Input.GetKey(KeyCode.LeftShift))
         {
-            _isGrounded = true;
+            Crouch();
+        }
+        else if (!Input.GetKey(KeyCode.LeftShift))
+        {
+            crouchOrNotCrouch[0].SetActive(true);
+            crouchOrNotCrouch[1].SetActive(false);
         }
     }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            _isGrounded = false;
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
-        {
-            _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-            _isGrounded = false;
-        }
-    }
-
+    
     public void Die()
     {
         GameManager.Instance.GameOver();
+        
     }
-
+    public void Crouch()
+    {
+            
+        Debug.Log("right shift");
+        crouchOrNotCrouch[0].SetActive(false);
+        crouchOrNotCrouch[1].SetActive(true);
+        isCrouch = true;       
+        
+    }
+    public void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {    
+            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+            crouchOrNotCrouch[0].SetActive(true);
+        crouchOrNotCrouch[1].SetActive(false);
+        }
+    }
+    
 }
