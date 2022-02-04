@@ -14,9 +14,11 @@ public class GameManager : MonoBehaviour
     public GameObject boutonStart;
 
     public static GameManager Instance;
-    public float distanceTraveled; // score
+
+    public float distanceTraveled;
 
     float actualDist, bestDist;
+    
     private void Awake()
     {
         filePath = Application.persistentDataPath + "/score.txt";
@@ -40,8 +42,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameOver()
     {
-        Debug.Log(("game over", Application.persistentDataPath));
-
         actualDist = distanceTraveled;
         UIManager.Instance.SetLastScore(distanceTraveled);
         if (actualDist > bestDist)
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         gameOver = true;
         boutonStart.SetActive(true);
     }
+    
     public void GameStart()
     {
         gameOver = false;        

@@ -209,11 +209,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6470085159184751400, guid: 0f6fcf224ca2400468c211567b16acb3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: -9.37
       objectReference: {fileID: 0}
     - target: {fileID: 6470085159184751400, guid: 0f6fcf224ca2400468c211567b16acb3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.55
+      value: 0.54
       objectReference: {fileID: 0}
     - target: {fileID: 6470085159184751400, guid: 0f6fcf224ca2400468c211567b16acb3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -261,6 +261,7 @@ GameObject:
   - component: {fileID: 186425746}
   - component: {fileID: 186425745}
   - component: {fileID: 186425744}
+  - component: {fileID: 186425748}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -350,6 +351,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &186425748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186425743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71e844462e76304d98d8923ca198430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 1154454535}
+  lastScoreText: {fileID: 1149487379}
+  bestScoreText: {fileID: 1710100551}
 --- !u!1 &730015573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,9 +1410,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boutonStart: {fileID: 2031054146}
   distanceTraveled: 0
-  scoreText: {fileID: 1154454535}
-  lastScoreText: {fileID: 1149487379}
-  bestScoreText: {fileID: 1710100551}
 --- !u!4 &1985485110
 Transform:
   m_ObjectHideFlags: 0
