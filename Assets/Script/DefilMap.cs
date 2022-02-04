@@ -2,32 +2,34 @@ using UnityEngine;
 
 public class DefilMap : MonoBehaviour
 {
-    [HideInInspector] public float defilSpeed = 10;
+    [HideInInspector] public float DefilSpeed = 10;
 
     void Update()
     {
-        if (GameManager.gameOver)
+        if (GameManager.Instance.IsGameOver)
         {
 
         }
-        else if (!GameManager.gameOver)
+        else
         {
             Movement();
 
-            if (this.transform.position.x <= -100)
+            if (DeleteNeeded())
             {
                 DeleteObject();
             }
-        }
-        
+        }        
     }
 
     private void Movement()
     {
-        float myX = this.transform.position.x;
-        float myY = this.transform.position.y;
-        float myZ = this.transform.position.z;
-        this.transform.position = new Vector3(myX - defilSpeed * Time.deltaTime, myY, myZ);
+        Vector3 pos = this.transform.position;
+        this.transform.position = new Vector3(pos.x - DefilSpeed * Time.deltaTime, pos.y, pos.y);
+    }
+
+    private bool DeleteNeeded()
+    {
+        return this.transform.position.x <= -100;
     }
 
     private void DeleteObject()
