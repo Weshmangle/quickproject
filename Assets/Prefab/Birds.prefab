@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7297343956804968698}
   - component: {fileID: 8010593801663121547}
   m_Layer: 0
-  m_Name: ennemi
+  m_Name: Birds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
