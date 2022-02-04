@@ -13,6 +13,8 @@ public class SpawnObstaclesManager : MonoBehaviour
     [SerializeField] private float _delay = 1;
 
     [SerializeField] private GameObject[] _prefabs;
+    [SerializeField] private float _minYPosForNotGroundedObject = 1f;
+    [SerializeField] private float _maxYPosForNotGroundedObject = 3f;
 
     private bool _spawnObstacle = true;
 
@@ -32,12 +34,21 @@ public class SpawnObstaclesManager : MonoBehaviour
         while (_spawnObstacle)
         {
             yield return new WaitForSeconds(_delay);
-            var prefab = GetRandomPrefab();
-            var instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+            GameObject prefab = GetRandomPrefab();
+            GameObject instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
             instance.name = prefab.name;
-            var scale = Random.Range(.5f, 1f);
+            float scale = Random.Range(.5f, 1f);
             instance.transform.localScale = new Vector3(scale, scale, scale);
-            instance.transform.localPosition = Vector3.zero;
+
+            if (instance.GetComponent<Obstacle>().IsGroundedObject)
+            {
+                instance.transform.localPosition = Vector3.zero;
+            }
+            else
+            {
+                float y = Random.Range(_minYPosForNotGroundedObject, _maxYPosForNotGroundedObject);
+                instance.transform.localPosition = new Vector3(0f, y, 0f);
+            }            
         }
     }
     

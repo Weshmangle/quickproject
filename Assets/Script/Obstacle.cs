@@ -4,12 +4,13 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1;
     [SerializeField] private float _XPosForDestroy = -100f;
+    public bool IsGroundedObject = true;
 
     void Update()
     {
         if (GameManager.Instance.IsGameOver) return;
-        
-        performMovement();
+
+        PerformMovement();
 
         if (NeedToBeDestroy())
         {
@@ -27,7 +28,7 @@ public class Obstacle : MonoBehaviour
         return this.transform.position.x < _XPosForDestroy;
     }
 
-    private void performMovement()
+    private void PerformMovement()
     {
         Vector3 pos = this.transform.position;
         pos.x -= _moveSpeed * Time.deltaTime;
