@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97e183fdc099134c9aa64b6823f5246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 5
+  JumpForce: 10
   _meshes:
   - {fileID: 4917226571992296636}
   - {fileID: 4917226571266106895}

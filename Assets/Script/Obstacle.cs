@@ -8,9 +8,8 @@ public class Obstacle : MonoBehaviour
     void Update()
     {
         if (GameManager.Instance.IsGameOver) return;
-        Vector3 pos = this.transform.position;
-        pos.x -= _moveSpeed * Time.deltaTime;
-        this.transform.position = pos;
+        
+        performMovement();
 
         if (NeedToBeDestroy())
         {
@@ -26,5 +25,12 @@ public class Obstacle : MonoBehaviour
     private bool NeedToBeDestroy()
     {
         return this.transform.position.x < _XPosForDestroy;
+    }
+
+    private void performMovement()
+    {
+        Vector3 pos = this.transform.position;
+        pos.x -= _moveSpeed * Time.deltaTime;
+        this.transform.position = pos;
     }
 }
