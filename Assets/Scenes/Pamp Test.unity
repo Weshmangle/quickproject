@@ -263,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 956879940}
   m_Layer: 0
-  m_Name: Map
+  m_Name: Environement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -557,7 +557,7 @@ GameObject:
   - component: {fileID: 1512381449}
   - component: {fileID: 1512381448}
   - component: {fileID: 1512381447}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Floor
   m_Icon: {fileID: 0}
@@ -823,7 +823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3971210143037011237, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 3971210143037011237, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_LocalPosition.z
@@ -860,6 +860,10 @@ PrefabInstance:
     - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: JumpForce
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: groundLayers.m_Bits
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3971210143037011239, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_Drag

@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971210142334169110}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.828, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8243318341576466095}
@@ -42,7 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3971210143037011237}
   - component: {fileID: 3971210143037011238}
-  - component: {fileID: 3971210143037011239}
+  - component: {fileID: 8855348674646249595}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -58,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971210143037011240}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -45.095966, y: 0.15348208, z: 0.11710787}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3971210142334169109}
@@ -77,26 +77,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97e183fdc099134c9aa64b6823f5246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JumpForce: 10
   _meshes:
   - {fileID: 4917226571992296636}
   - {fileID: 4917226571266106895}
---- !u!54 &3971210143037011239
-Rigidbody:
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  isGrounded: 0
+  positionGravity: {x: 0, y: 0, z: 0}
+--- !u!143 &8855348674646249595
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971210143037011240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &3971210143600293301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,7 +127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2069bafd1ac643b489122e526e38b7d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.602
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 2069bafd1ac643b489122e526e38b7d0, type: 3}
       propertyPath: m_LocalRotation.w

@@ -2,29 +2,41 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float LValue, jumpHeight, LSpeed;
-    Vector3 MStart, MEnd;
     [SerializeField] private GameObject[] _meshes;
-    private bool _isCrouch = false;
-    private bool _isJump = false;    
-    private bool _isGrounded;
-    private Rigidbody _rb;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask obstacleLayer;
+    
+    [SerializeField] private bool isGrounded;
+    private float jumpHeight = 2f;
+    private float gravity = -50f;
+    public Vector3 positionGravity;
+
     void Start()
     {
-        _rb = GetComponent<Rigidbody>();
-        MStart = this.transform.position;
-        MEnd = MStart;        
-        LValue = 1.0f;
         
     }
 
     void Update()
     {
-        Jump();
-        LerpJump();
-        Crouch();
-        ShowHideCrouchMesh();        
+        isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
         
+        if(isGrounded && positionGravity.y < 0)
+        {
+            positionGravity.y = 0;
+        }
+        else
+        {
+            positionGravity.y += gravity * Time.deltaTime;
+        }
+
+        GetComponent<CharacterController>().Move(new Vector3(0, 0, 0 ));
+
+        if(isGrounded && Input.GetButton("Jump"))
+        {
+            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
+        GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
     }
 
     public void Die()
@@ -34,7 +46,7 @@ public class Player : MonoBehaviour
 
     private void ShowHideCrouchMesh()
     {
-        if (_isCrouch)
+        /*if (_isCrouch)
         {
             _meshes[0].SetActive(false);
             _meshes[1].SetActive(true);
@@ -43,75 +55,6 @@ public class Player : MonoBehaviour
         {
             _meshes[0].SetActive(true);
             _meshes[1].SetActive(false);
-        }
+        }*/
     }
-
-    private void Crouch()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            _isCrouch = true;
-        }
-        else
-        {
-            _isCrouch = false;
-        }
-    }
-    private void Jump()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _isJump = true;
-            
-            /*
-            _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
-            _isGrounded = false;
-            _meshes[0].SetActive(true);
-            _meshes[1].SetActive(false);
-            */
-        }
-        else
-        {
-            
-        }
-    }
-    public void LerpJump()
-    {
-        if(_isJump)
-        {
-            LValue = -0.0f;
-            MStart = this.transform.position;
-            MEnd = this.transform.position + this.transform.up * jumpHeight*Time.deltaTime;
-            LValue += LSpeed * Time.deltaTime;
-        }
-        else
-        {
-            if (LValue > 1.0f)
-            {
-                LValue = 1.0f;
-            }
-            this.transform.position = Vector3.Lerp(MStart, MEnd, LValue);
-        }
-    }
-    
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            _isGrounded = true;
-            //_isJump = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Floor")
-        {
-            _isGrounded = false;
-            //_isJump = false;
-        }
-    }
-
 }

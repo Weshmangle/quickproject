@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 10;
+    [SerializeField] private float _moveSpeed = 1;
     [SerializeField] private float _XPosForDestroy = -100f;
 
     void Update()
