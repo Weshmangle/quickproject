@@ -3,21 +3,22 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance {get{return _instance;}}
+    public static UIManager Instance { get { return _instance; } }
     private static UIManager _instance;
-    
+
     [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
+    [SerializeField] private GameObject _startButton;
 
     private void Start()
     {
-        if(_instance != null)
+        if (_instance != null)
         {
             Debug.LogError("UIManager is already instanciate");
             return;
         }
         _instance = this;
     }
-    
+
     public void SetScore(float score)
     {
         _scoreText.text = $"Distance parcourue: {score}";
@@ -31,5 +32,10 @@ public class UIManager : MonoBehaviour
     public void SetLastScore(float score)
     {
         _lastScoreText.text = $"Derniere distance atteinte: {score}";
+    }
+
+    public void StartGame()
+    {
+        GameManager.Instance.GameStart();
     }
 }

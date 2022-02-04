@@ -16,7 +16,7 @@ public class MapManager : MonoBehaviour
 
     public float MapDefilementSpeed
     {
-        get { return MapDefilementSpeed; }
+        get { return _mapDefilementSpeed; }
         private set { _mapDefilementSpeed = value; }
     }
 
