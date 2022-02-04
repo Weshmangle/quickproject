@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         remainingTimeBeforeAddScore = IncrementPointDelay;
+        AudioManager.Instance.StartMusic();
     }
 
     private void Update()
