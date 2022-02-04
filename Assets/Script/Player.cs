@@ -2,60 +2,81 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public GameObject[] crouchOrNotCrouch;
-    bool isCrouch = false;
-    public Vector3 jump;
-    public float jumpForce = 2.0f;     
-    public bool isGrounded;
-    Rigidbody rb;
+    public float JumpForce = 10.0f;
+
+    [SerializeField] private GameObject[] _meshes;
+
+    private bool _isCrouch = false;
+    private bool _isGrounded;
+    private Rigidbody _rb;
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        jump = new Vector3(0.0f, 10.0f, 0.0f);
+        _rb = GetComponent<Rigidbody>();
     }
-     
-    void OnCollisionStay()
-    {
-        isGrounded = true;
-    }
-     
-     void Update()
+
+    void Update()
     {
         Jump();
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            Crouch();
-        }
-        else if (!Input.GetKey(KeyCode.LeftShift))
-        {
-            crouchOrNotCrouch[0].SetActive(true);
-            crouchOrNotCrouch[1].SetActive(false);
-        }
+        Crouch();
+        ShowHideCrouchMesh();
     }
-    
+
     public void Die()
     {
         GameManager.Instance.GameOver();
-        
     }
-    public void Crouch()
+
+    private void ShowHideCrouchMesh()
     {
-            
-        Debug.Log("right shift");
-        crouchOrNotCrouch[0].SetActive(false);
-        crouchOrNotCrouch[1].SetActive(true);
-        isCrouch = true;       
-        
+        if (_isCrouch)
+        {
+            _meshes[0].SetActive(false);
+            _meshes[1].SetActive(true);
+        }
+        else
+        {
+            _meshes[0].SetActive(true);
+            _meshes[1].SetActive(false);
+        }
+
     }
-    public void Jump()
+
+    private void Crouch()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {    
-            rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
-            crouchOrNotCrouch[0].SetActive(true);
-        crouchOrNotCrouch[1].SetActive(false);
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            _isCrouch = true;
+        }
+        else
+        {
+            _isCrouch = false;
         }
     }
-    
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        {
+            _rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            _isGrounded = false;
+            _meshes[0].SetActive(true);
+            _meshes[1].SetActive(false);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            _isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            _isGrounded = false;
+        }
+    }
+
 }

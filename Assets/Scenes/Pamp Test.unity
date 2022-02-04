@@ -130,6 +130,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1250913154543780892, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250913154543780892, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1250913154543780892, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754343425897024329, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754343425897024329, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3754343425897024329, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -297,7 +321,7 @@ MonoBehaviour:
   _scoreText: {fileID: 1154454535}
   _lastScoreText: {fileID: 1149487379}
   _bestScoreText: {fileID: 1710100551}
-  _startButton: {fileID: 0}
+  _startButton: {fileID: 1282713620}
 --- !u!1 &726710238
 GameObject:
   m_ObjectHideFlags: 0
