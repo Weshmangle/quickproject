@@ -363,9 +363,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71e844462e76304d98d8923ca198430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   scoreText: {fileID: 1154454535}
   lastScoreText: {fileID: 1149487379}
   bestScoreText: {fileID: 1710100551}
+=======
+  _scoreText: {fileID: 1154454535}
+  _lastScoreText: {fileID: 1149487379}
+  _bestScoreText: {fileID: 1710100551}
+  _startButton: {fileID: 2031054146}
+>>>>>>> 4b608b263ba1ed0e2d8bca34d6643548bfb571a9
 --- !u!1 &730015573
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +489,7 @@ MonoBehaviour:
   _bonus: []
   _floor:
   - {fileID: 5340129014356528242, guid: 5f6edcd1a2a4e4d4a91aa37d63d24450, type: 3}
-  objectExistList: []
+  _objectExistList: []
 --- !u!4 &768475478
 Transform:
   m_ObjectHideFlags: 0
@@ -1152,7 +1159,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 768475477}
         m_TargetAssemblyTypeName: MapManager, Assembly-CSharp
-        m_MethodName: CreatMap
+        m_MethodName: CreateMap
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1408,8 +1415,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1f8fcff9713a14286e9b918fdfac62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   boutonStart: {fileID: 2031054146}
   distanceTraveled: 0
+=======
+  DistanceTraveled: 0
+  IsGameOver: 1
+>>>>>>> 4b608b263ba1ed0e2d8bca34d6643548bfb571a9
 --- !u!4 &1985485110
 Transform:
   m_ObjectHideFlags: 0

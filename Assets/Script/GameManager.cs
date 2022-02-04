@@ -9,8 +9,6 @@ public class GameManager : MonoBehaviour
     private string _filePath;
     private float _actualDist, _bestDist;
 
-    [SerializeField] private GameObject _boutonStart;
-
     private void Awake()
     {
         _filePath = Application.persistentDataPath + "/score.txt";
@@ -47,7 +45,6 @@ public class GameManager : MonoBehaviour
 
         MapManager.Instance.DeleteMap();
         IsGameOver = true;
-        _boutonStart.SetActive(true);
     }
 
 
