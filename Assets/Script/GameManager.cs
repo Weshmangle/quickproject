@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    //private string filePath = Application.persistentDataPath + "/settings.txt";
-    //private string fileName;
+    private string filePath;
+    
     public static bool gameOver = true;
 
     public GameObject boutonStart;
@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     float actualDist, bestDist;
     private void Awake()
     {
+        filePath = Application.persistentDataPath + "/score.txt";
+        
         if(Instance != null)
         {
             Debug.LogError("Instance of GameManager already exist");
@@ -28,6 +30,7 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
     }
+
     private void Update()
     {
         if (!gameOver)
@@ -35,11 +38,11 @@ public class GameManager : MonoBehaviour
             distanceTraveled += MapManager.mapDefilementSpeed * Time.deltaTime;
             scoreText.text = $"Distance parcourue: {distanceTraveled}";
         }
-        
     }
     public void GameOver()
     {
-        Debug.Log("game over");
+        Debug.Log(("game over", Application.persistentDataPath));
+
         actualDist = distanceTraveled;
         lastScoreText.text = $"Derniere distance atteinte: {distanceTraveled}"; 
         if (actualDist > bestDist)
@@ -48,16 +51,17 @@ public class GameManager : MonoBehaviour
             bestScoreText.text = $" Plus loin attein: {bestDist}";
         }
         distanceTraveled = 0.0f;
-        /*
-        //sauvegarder les score
-        //File.WriteAllLines(fileName, scoreText.text,System.Text.Encoding.Default);
+        
         if (!File.Exists(filePath))
         {
-            File.WriteAllText(fileName, "");
-            
+            File.WriteAllText(filePath, "");
         }
-        File.AppendAllText(filePath,)
-        */
+        
+        DataScore score;
+        score.highScore = bestDist;
+        score.lastScore = actualDist;
+        File.WriteAllText(filePath, JsonUtility.ToJson(score));
+
         MapManager.Instance.DeleteOldMap();
         gameOver = true;
         boutonStart.SetActive(true);
