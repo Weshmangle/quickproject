@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
     public float JumpForce = 10.0f;
 
     private bool _isGrounded;
-
     private Rigidbody _rb;
 
     void Start()

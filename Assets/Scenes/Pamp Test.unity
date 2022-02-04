@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DistanceTraveled: 0
-  IsGameOver: 1
+  PointsPerSecond: 1
 --- !u!4 &1985485110
 Transform:
   m_ObjectHideFlags: 0
