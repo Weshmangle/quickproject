@@ -6,11 +6,7 @@ public class DefilMap : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.IsGameOver)
-        {
-
-        }
-        else
+        if (!GameManager.Instance.IsGameOver)
         {
             Movement();
 

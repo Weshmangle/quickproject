@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
     private static UIManager _instance;
 
     [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
-    [SerializeField] private GameObject _startButton;
 
     private void Start()
     {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 869280404}
   m_Layer: 0
   m_Name: cactus
-  m_TagString: Enemy
+  m_TagString: Cactus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bc6d324488dd74295c881fb9b88275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defilSpeed: 10
+  DefilSpeed: 10
 --- !u!65 &6594100150053675709
 BoxCollider:
   m_ObjectHideFlags: 0

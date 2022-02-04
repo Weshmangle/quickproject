@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
     public float DistanceTraveled; // score
-    public bool IsGameOver = true;
+    public bool IsGameOver = false;
     private string _filePath;
     private float _actualDist, _bestDist;
 
@@ -18,18 +18,19 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Instance of GameManager already exist");
             return;
         }
-
+        
         Instance = this;
     }
-
+    
     private void Update()
     {
         if (!IsGameOver)
         {
-            DistanceTraveled += MapManager.Instance.MapDefilementSpeed * Time.deltaTime;
+            DistanceTraveled += SpawnObstaclesManager.Instance.Delay * Time.deltaTime;
             UIManager.Instance.SetScore(DistanceTraveled);
         }
     }
+
     public void GameOver()
     {
         _actualDist = DistanceTraveled;
@@ -43,8 +44,9 @@ public class GameManager : MonoBehaviour
 
         SaveScore(_bestDist, _actualDist);
 
-        MapManager.Instance.DeleteMap();
+        //SpawnManager.Instance.DeleteMap();
         IsGameOver = true;
+        Time.timeScale = 0;
     }
 
 
@@ -63,6 +65,7 @@ public class GameManager : MonoBehaviour
     public void GameStart()
     {
         IsGameOver = false;
-        MapManager.Instance.CreateMap();
+        Time.timeScale = 1;
+        //SpawnManager.Instance.CreateMap();
     }
 }
