@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +6,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance {get{return _instance;}}
     private static UIManager _instance;
     
-    [SerializeField] private Text scoreText, lastScoreText, bestScoreText;
+    [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
 
     private void Start()
     {
@@ -22,16 +20,16 @@ public class UIManager : MonoBehaviour
     
     public void SetScore(float score)
     {
-        scoreText.text = $"Distance parcourue: {score}";
+        _scoreText.text = $"Distance parcourue: {score}";
     }
 
     public void SetBestScore(float score)
     {
-        bestScoreText.text = $" Plus loin attein: {score}";
+        _bestScoreText.text = $" Plus loin attein: {score}";
     }
 
     public void SetLastScore(float score)
     {
-        lastScoreText.text = $"Derniere distance atteinte: {score}";
+        _lastScoreText.text = $"Derniere distance atteinte: {score}";
     }
 }

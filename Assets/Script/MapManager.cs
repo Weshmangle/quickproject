@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -13,9 +11,15 @@ public class MapManager : MonoBehaviour
     //supression des terrain
 
     public static MapManager Instance;
-    public GameObject[] _obstacle, _bonus, _floor, objectExistList;
-    public static float mapDefilementSpeed = 20;
-    
+    private float _mapDefilementSpeed = 20;
+    [SerializeField] private GameObject[] _obstacle, _bonus, _floor, _objectExistList;
+
+    public float MapDefilementSpeed
+    {
+        get { return MapDefilementSpeed; }
+        private set { _mapDefilementSpeed = value; }
+    }
+
     private void Awake()
     {
         if (Instance != null)
@@ -26,20 +30,27 @@ public class MapManager : MonoBehaviour
 
         Instance = this;
     }
-    public void GenerateNewMap()
+
+    public void CreateMap()
     {
-        
-    }
-    public void DeleteOldMap()
-    {
-        
+
     }
 
-    //test
-    public void CreatMap()
+    public void DeleteMap()
     {
-        GameObject floor = Instantiate(_floor[0], new Vector3(0, 0, 0), Quaternion.identity);
-        floor.transform.SetParent(this.transform);
-        floor.GetComponent<DefilMap>().defilSpeed = mapDefilementSpeed;
+
+    }
+
+    public void GenerateFloor()
+    {
+        int index = GetRandomIndex(_floor);
+
+        GameObject floor = Instantiate(_floor[index], Vector3.zero, Quaternion.identity, this.transform);
+        floor.GetComponent<DefilMap>().DefilSpeed = MapDefilementSpeed;
+    }
+
+    private int GetRandomIndex(GameObject[] objs)
+    {
+        return Random.Range(0, _floor.Length);
     }
 }
