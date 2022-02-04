@@ -130,25 +130,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1497508393, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_RootOrder
       value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_LocalPosition.x
@@ -156,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 8472228540068292318, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_LocalPosition.z
@@ -877,7 +861,7 @@ GameObject:
   - component: {fileID: 1512381447}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -891,7 +875,7 @@ Transform:
   m_GameObject: {fileID: 1512381445}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 102.42902, y: 0.26337, z: 5.4448}
+  m_LocalScale: {x: 102.42902, y: 0.2, z: 5.4448}
   m_Children: []
   m_Father: {fileID: 768475478}
   m_RootOrder: 0
