@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: -1504981713932161579, guid: 5be8822dd3dd69e44b9fb99086b6fe06, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c06f0085a3d8e48408e5272ab792d829, type: 2}
+      objectReference: {fileID: 2100000, guid: afc3b7acb8b25a543ae92a0f44e2284e, type: 2}
     - target: {fileID: -927199367670048503, guid: 5be8822dd3dd69e44b9fb99086b6fe06, type: 3}
       propertyPath: m_Name
       value: cactus
