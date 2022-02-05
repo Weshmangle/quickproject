@@ -10,7 +10,7 @@ public class SpawnObstaclesManager : MonoBehaviour
         private set { _delay = value; }
     }
 
-    [SerializeField] private float _delay = 1;
+    [SerializeField] private float _delay = 5;
 
     [SerializeField] private GameObject[] _prefabs;
     [SerializeField] private float _minYPosForNotGroundedObject = 1f;
@@ -33,28 +33,50 @@ public class SpawnObstaclesManager : MonoBehaviour
     {
         while (_spawnObstacle)
         {
-            yield return new WaitForSeconds(_delay);
-            GameObject prefab = GetRandomPrefab();
-            GameObject instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
-            instance.name = prefab.name;
-            float scale = Random.Range(.5f, 1.5f);
-            instance.transform.localScale = new Vector3(scale, scale, scale);
-
-            if (instance.GetComponent<Obstacle>().IsGroundedObject)
+            yield return new WaitForSeconds(_delay + Random.Range(0, _delay));
+            
+            switch(Random.Range(0, _prefabs.Length))
             {
-                instance.transform.localPosition = Vector3.zero;
+                case 0:
+                    InstantiateCactus();
+                    break;
+                case 1:
+                    InstantiateBird();
+                    break;
             }
-            else
-            {
-                float y = Random.Range(_minYPosForNotGroundedObject, _maxYPosForNotGroundedObject);
-                instance.transform.localPosition = new Vector3(0f, y, 0f);
-            }            
         }
     }
-    
-    private GameObject GetRandomPrefab()
+
+    private void InstantiateCactus()
     {
-        return _prefabs[Random.Range(0, _prefabs.Length)];
+            GameObject prefab = GetPrefabAt(0);
+
+            for (var i = 0; i < Random.Range(1, 3); i++)
+            {
+                var rot = Quaternion.AngleAxis(180 * Random.Range(0, 1), Vector3.up);
+    
+                GameObject instance = Instantiate(prefab, Vector3.zero, rot, transform);
+                instance.transform.localScale = instance.transform.localScale * Random.Range(1f, 2.5f);
+                instance.name = prefab.name;
+                instance.transform.localPosition = new Vector3(i * Random.Range(.75f, 1), 0, 0);
+            }
+    }
+
+    private void InstantiateBird()
+    {
+            GameObject prefab = GetPrefabAt(1);
+            GameObject instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
+            
+            float scale = Random.Range(.75f, 1.5f);
+            instance.transform.localScale = new Vector3(scale, scale, scale);
+
+            float y = Random.Range(_minYPosForNotGroundedObject, _maxYPosForNotGroundedObject);
+            instance.transform.localPosition = new Vector3(0f, y, 0f);
+    }
+    
+    private GameObject GetPrefabAt(int index)
+    {
+        return _prefabs[index];
     }
 
     public void StartSpawn()

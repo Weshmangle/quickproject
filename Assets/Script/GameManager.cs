@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private GameObject ground;
     public static GameManager Instance;
     public int IncrementPoint = 1;
     public float IncrementPointDelay = .35f;
@@ -46,8 +47,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        var scale = ground.transform.localScale;
+        scale.x = Screen.width / 15;
+        ground.transform.localScale = scale;
+        
         if (!IsGameOver)
-        {            
+        {
             remainingTimeBeforeAddScore -= Time.deltaTime;
 
             if(remainingTimeBeforeAddScore <= 0)

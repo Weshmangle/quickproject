@@ -19,6 +19,12 @@ public class UIManager : MonoBehaviour
         _instance = this;
     }
 
+    private void Update()
+    {
+        var position = transform.position;
+        //Screen.width 
+    }
+
     public void SetScore(int score)
     {
         _scoreText.text = $"Distance: {score}";

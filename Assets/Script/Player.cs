@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     
     [SerializeField] private bool isGrounded;
-    private float jumpHeight = 2f;
-    private float gravity = -50f;
+    private float jumpHeight = 4f;
+    private float gravity = -100f;
     public Vector3 positionGravity;
 
     void Start()
@@ -35,8 +35,23 @@ public class Player : MonoBehaviour
         {
             positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
+        var scale = transform.localScale;
+        
+        if(Input.GetButton("Crouch"))
+        {
+            scale.y = .5f;
+        }
+        else
+        {
+            scale.y = 1f;
+        }
+        transform.localScale = scale;
 
         GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
+        
+        var position = transform.position;
+        position.x = -Screen.width / 40;
+        transform.position = position;
     }
 
     public void Die()

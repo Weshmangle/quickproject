@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8010593801663121547}
   m_Layer: 7
   m_Name: Bird
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629d40ab1feeab64bb2f2b5bffe52f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
+  _moveSpeed: 20
   _XPosForDestroy: -100
   IsGroundedObject: 0
 --- !u!1001 &7067522024480704469

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 629d40ab1feeab64bb2f2b5bffe52f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
+  _moveSpeed: 20
   _XPosForDestroy: -100
   IsGroundedObject: 1
 --- !u!1001 &4793255721406663962
