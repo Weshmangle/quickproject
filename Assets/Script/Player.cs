@@ -49,9 +49,9 @@ public class Player : MonoBehaviour
 
         GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
         
-        var position = transform.position;
-        position.x = -Screen.width / 40;
-        transform.position = position;
+        //var position = transform.position;
+        //position.x = -Screen.width / 40;
+        //transform.position = position;
     }
 
     public void Die()

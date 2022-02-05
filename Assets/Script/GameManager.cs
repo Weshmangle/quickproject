@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         var scale = ground.transform.localScale;
-        scale.x = Screen.width / 15;
+        //scale.x = Screen.width / 15;
         ground.transform.localScale = scale;
         
         if (!IsGameOver)
