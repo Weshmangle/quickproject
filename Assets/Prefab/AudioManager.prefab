@@ -45,8 +45,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musics:
-  - {fileID: 8300000, guid: a01b9520739339845b8eff8f9c267502, type: 3}
+  - {fileID: 8300000, guid: eaae0355ee067dd45a5f271192754b96, type: 3}
   _source: {fileID: 1042840834}
+  _pitchBoostValue: 0.01
+  _maxPitchValue: 1
+  _increaseMusicSpeed: 0
 --- !u!82 &1042840834
 AudioSource:
   m_ObjectHideFlags: 0

@@ -148,15 +148,16 @@ public class GameManager : MonoBehaviour
     {
         if (!_firstStartGame)
         {
-            GlobalGameSpeed = 1f;
-            OnGameSpeedReset?.Invoke();
+            OnGameSpeedReset?.Invoke();            
         }
-
+        
+        GlobalGameSpeed = 1f;
         SpawnObstaclesManager.Instance.DeleteAllObstacles();
         UIManager.Instance.ShowHideStartButton(false);
         IsGameOver = false;
         Time.timeScale = 1;
         _distanceTraveled = 0;
         SpawnObstaclesManager.Instance.StartSpawn();
+        _firstStartGame = false;
     }
 }
