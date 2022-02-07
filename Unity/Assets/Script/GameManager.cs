@@ -119,12 +119,13 @@ public class GameManager : MonoBehaviour
         File.WriteAllText(_filePath, JsonUtility.ToJson(score, true));
     }
 
+
     private void DisplayAllScore()
     {
         DataScore score = RetrieveScore();
 
         UIManager.Instance.SetBestScore(score.HighScore);
-        //UIManager.Instance.SetLastScore(score.LastScore);
+        UIManager.Instance.SetLastScore(score.LastScore);
         UIManager.Instance.SetScore(_distanceTraveled);
     }
 

@@ -89,6 +89,7 @@ public class SpawnObstaclesManager : MonoBehaviour
         instance.transform.localScale = new Vector3(scale, scale, scale);
 
         float y = Random.Range(_minYPosForNotGroundedObject, _maxYPosForNotGroundedObject);
+        
         instance.transform.localPosition = new Vector3(0f, y, 0f);
     }
 
