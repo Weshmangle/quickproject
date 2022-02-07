@@ -4,9 +4,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject ground;
+    [SerializeField] private int _scorePointForAugmentGameSpeed = 15;
+    [SerializeField] private float _speedGameAddValue = .15f;
+
     public static GameManager Instance;
     public int IncrementPoint = 1;
     public float IncrementPointDelay = .35f;
+
+    public float GlobalGameSpeed = 1f;
     public bool IsGameOver
     {
         get { return _isGameOver; }
@@ -25,6 +30,11 @@ public class GameManager : MonoBehaviour
     private float remainingTimeBeforeAddScore = 1;
     private string _filePath;
     private bool _isGameOver = true;
+    private bool _speedGame = false;
+
+    public event GameSpeedChanged OnGameSpeedChanged;
+    public event GameSpeedChanged OnGameSpeedReset;
+    public delegate void GameSpeedChanged();
 
     private void Awake()
     {
@@ -60,6 +70,19 @@ public class GameManager : MonoBehaviour
                 remainingTimeBeforeAddScore = IncrementPointDelay;
                 _distanceTraveled += IncrementPoint;
                 UIManager.Instance.SetScore(_distanceTraveled);
+
+                if (_distanceTraveled % _scorePointForAugmentGameSpeed == 0)
+                {
+                    _speedGame = true;
+                }
+            }
+
+            if(_speedGame)
+            {
+                Debug.Log("augmenter vitesse");
+                GlobalGameSpeed += _speedGameAddValue;
+                OnGameSpeedChanged?.Invoke();
+                _speedGame = false;
             }
         }
     }
@@ -100,6 +123,8 @@ public class GameManager : MonoBehaviour
         IsGameOver = false;
         Time.timeScale = 1;
         _distanceTraveled = 0;
+        GlobalGameSpeed = 1f;
+        OnGameSpeedReset?.Invoke();
         SpawnObstaclesManager.Instance.StartSpawn();
     }
 }

@@ -43,5 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1f8fcff9713a14286e9b918fdfac62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ground: {fileID: 0}
+  _scorePointForAugmentGameSpeed: 15
+  _speedGameAddValue: 0.15
   IncrementPoint: 1
   IncrementPointDelay: 0.35
+  GlobalGameSpeed: 1
