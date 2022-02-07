@@ -25,17 +25,33 @@ public class UIManager : MonoBehaviour
 
     public void SetScore(int score)
     {
-        _scoreText.text = $"Distance: {score}";
+        string a = "0";
+        string uiScore =  "";
+        int maxDeZero = 4 - score.ToString().Length; 
+        for(int i = 0; i < maxDeZero; i++)       
+        {
+            uiScore += a;
+        }
+        _scoreText.text = uiScore + score.ToString();
+       
     }
 
     public void SetBestScore(int score)
     {
-        _bestScoreText.text = $"Best: {score}";
+        string a = "0";
+        string uiScore =  "";
+        int maxDeZero = 4 - score.ToString().Length; 
+        for(int i = 0; i < maxDeZero; i++)       
+        {
+            uiScore += a;
+        }
+        _bestScoreText.text = "HI:" + uiScore + score.ToString();
+        //_bestScoreText.text = $"HI:{score}";
     }
 
     public void SetLastScore(int score)
     {
-        _lastScoreText.text = $"Last: {score}";
+        _lastScoreText.text = $"LAST:{score}";
     }
 
     public void StartGame()

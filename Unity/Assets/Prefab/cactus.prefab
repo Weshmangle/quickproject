@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 20
   _moveSpeedIncreaseValue: 1
-  _XPosForDestroy: -10
+  _XPosForDestroy: -100
   _maxMoveSpeed: 50
   IsGroundedObject: 1
 --- !u!1001 &4329700002734282354
