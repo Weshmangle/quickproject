@@ -1,28 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FieldManager : MonoBehaviour
 {
-    public TerrainLayer fieldSynth;
-    public GameObject[] _stars;
-    public float offsetSpeed;
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private TerrainLayer _fieldSynth;
+    [SerializeField] private float _offsetSpeed;
+
+    [SerializeField] private float _maxOffsetSpeed = 40;
+    [SerializeField] private float _offsetSpeedIncreaseValue = 5;
+
+    private float _actualOffsetSpeed;
+
+    private void Start()
     {
-        
+        _actualOffsetSpeed = _offsetSpeed;
+
+        GameManager.Instance.OnGameSpeedChanged += IncreaseOffsetSpeed;
+        GameManager.Instance.OnGameSpeedReset += ResetOffsetSpeed;
     }
 
-    // Update is called once per frame
+    private void IncreaseOffsetSpeed()
+    {
+        if (_actualOffsetSpeed >= _maxOffsetSpeed) return;
+        _actualOffsetSpeed += _offsetSpeedIncreaseValue;
+    }
+
+    private void ResetOffsetSpeed()
+    {
+        _actualOffsetSpeed = _offsetSpeed;
+    }
+
     void Update()
     {
-        if(!GameManager.Instance.IsGameOver)
+        if (!GameManager.Instance.IsGameOver)
         {
-            float offset = Time.deltaTime * offsetSpeed;        
-            fieldSynth.tileOffset = new Vector2(fieldSynth.tileOffset.x+offset,0);      
+            float offset = _actualOffsetSpeed * Time.deltaTime;
+            _fieldSynth.tileOffset = new Vector2(_fieldSynth.tileOffset.x + offset, 0);
         }
-          
-        
     }
     public void creatStarsInSky()
     {

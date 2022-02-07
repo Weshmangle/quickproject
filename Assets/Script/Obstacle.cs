@@ -31,7 +31,7 @@ public class Obstacle : MonoBehaviour
     private void PerformMovement()
     {
         Vector3 pos = this.transform.position;
-        pos.x -= _moveSpeed * Time.deltaTime;
+        pos.x -= (_moveSpeed * Time.deltaTime) * GameManager.Instance.GlobalGameSpeed;
         this.transform.position = pos;
     }
 }

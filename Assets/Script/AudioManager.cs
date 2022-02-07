@@ -5,8 +5,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _musics;
-
     [SerializeField] private AudioSource _source;
+    [SerializeField] private float _pitchBoostValue = .01f;
+    [SerializeField] private float _maxPitchValue = 1.2f;
+
     private int _index = 0;
     private bool _playMusic = true;
 
@@ -23,11 +25,23 @@ public class AudioManager : MonoBehaviour
         Instance = this;
     }
 
-    
-
     public void StartMusic()
     {
+        GameManager.Instance.OnGameSpeedChanged += SpeedMusic;
+        GameManager.Instance.OnGameSpeedReset += ResetDefaultSpeedMusic;
         StartCoroutine(PlayMusic());
+    }
+
+    private void SpeedMusic()
+    {
+        if (_source.pitch >= _maxPitchValue) return;
+        _source.pitch += _pitchBoostValue;
+    }
+
+    private void ResetDefaultSpeedMusic()
+    {
+        _source.pitch = 1f;
+        _source.Play();
     }
 
     private IEnumerator PlayMusic()
@@ -39,7 +53,7 @@ public class AudioManager : MonoBehaviour
                 _index %= _musics.Length;
 
                 _source.clip = _musics[_index];
-                _source.Play();
+                _source.Play();                
 
                 yield return new WaitForSeconds(_musics[_index].length);
                 _index++;
