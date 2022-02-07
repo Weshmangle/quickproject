@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
     
-    [SerializeField] private bool isGrounded;
+    [SerializeField] private bool isGrounded, isCrouched;
+
     private float jumpHeight = 4f;
     private float gravity = -100f;
     public Vector3 positionGravity;
@@ -26,29 +27,40 @@ public class Player : MonoBehaviour
 
         GetComponent<CharacterController>().Move(new Vector3(0, 0, 0 ));
 
-        if(isGrounded && Input.GetButton("Jump"))
-        {
-            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
-        }
-        var scale = transform.localScale;
+        //Jump();
+        //Crouch();
+        GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
+
         
-        if(Input.GetButton("Crouch"))
+        if(isCrouched)
         {
+            var scale = transform.localScale;        
             scale.y = .5f;
+            transform.localScale = scale;
         }
         else
         {
+            var scale = transform.localScale;        
             scale.y = 1f;
+            transform.localScale = scale;
         }
-        transform.localScale = scale;
-
-        GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
         
         //var position = transform.position;
         //position.x = -Screen.width / 40;
         //transform.position = position;
     }
 
+    public void Jump()
+    {
+        if(isGrounded)
+        {
+            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+    }
+    public void Crouch()
+    {
+        isCrouched = true;        
+    }
     public void Die()
     {
         GameManager.Instance.GameOver();
