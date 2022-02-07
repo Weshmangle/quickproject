@@ -6,7 +6,7 @@ public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _musics;
 
-    private AudioSource _source;
+    [SerializeField] private AudioSource _source;
     private int _index = 0;
     private bool _playMusic = true;
 
@@ -23,10 +23,7 @@ public class AudioManager : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
-    {
-        _source = GetComponent<AudioSource>();
-    }
+    
 
     public void StartMusic()
     {
