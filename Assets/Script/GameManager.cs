@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject ground;
+    [SerializeField] private GameObject HItext;
     [SerializeField] private int _scorePointForAugmentGameSpeed = 15;
     [SerializeField] private float _speedGameAddValue = .15f;
 
@@ -92,7 +93,7 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
         SpawnObstaclesManager.Instance.StopSpawn();
-        UIManager.Instance.SetLastScore(_distanceTraveled);
+        //UIManager.Instance.SetLastScore(_distanceTraveled);
         if (_distanceTraveled > _bestDist)
         {
             _bestDist = _distanceTraveled;
@@ -102,6 +103,7 @@ public class GameManager : MonoBehaviour
 
         _distanceTraveled = 0;
         UIManager.Instance.ShowHideStartButton(true);
+        HItext.SetActive(true);
     }
 
 
@@ -122,7 +124,7 @@ public class GameManager : MonoBehaviour
         DataScore score = RetrieveScore();
 
         UIManager.Instance.SetBestScore(score.HighScore);
-        UIManager.Instance.SetLastScore(score.LastScore);
+        //UIManager.Instance.SetLastScore(score.LastScore);
         UIManager.Instance.SetScore(_distanceTraveled);
     }
 
