@@ -189,6 +189,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 3bec08c331aefba42807760d5dbad0bb, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cba98ca257fc0ac48ad058034f6f9a3d, type: 2}
     - target: {fileID: 919132149155446097, guid: 3bec08c331aefba42807760d5dbad0bb, type: 3}
       propertyPath: m_Name
       value: cactus_1
@@ -276,6 +280,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: cf0b6b5781e71874fb8c57192b173a0e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cba98ca257fc0ac48ad058034f6f9a3d, type: 2}
     - target: {fileID: 919132149155446097, guid: cf0b6b5781e71874fb8c57192b173a0e, type: 3}
       propertyPath: m_Name
       value: cactus_3
@@ -363,6 +371,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 48d3c7add64df4e47acbc12f12e8a3f8, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cba98ca257fc0ac48ad058034f6f9a3d, type: 2}
     - target: {fileID: 919132149155446097, guid: 48d3c7add64df4e47acbc12f12e8a3f8, type: 3}
       propertyPath: m_Name
       value: cactus_2
