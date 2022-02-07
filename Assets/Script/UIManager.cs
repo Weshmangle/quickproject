@@ -3,26 +3,24 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public static UIManager Instance { get { return _instance; } }
-    private static UIManager _instance;
+    public static UIManager Instance;
 
     [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
     [SerializeField] private Button _startButton;
 
-    private void Start()
+    private void Awake()
     {
-        if (_instance != null)
+        if (Instance != null)
         {
-            Debug.LogError("UIManager is already instanciate");
+            Debug.LogError("Instance of UIManager is already exist");
             return;
         }
-        _instance = this;
+        Instance = this;
     }
 
     private void Update()
     {
         var position = transform.position;
-        //Screen.width 
     }
 
     public void SetScore(int score)

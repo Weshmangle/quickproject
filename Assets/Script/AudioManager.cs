@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource _source;
     [SerializeField] private float _pitchBoostValue = .01f;
     [SerializeField] private float _maxPitchValue = 1.2f;
+    [SerializeField] private bool _increaseMusicSpeed = true;
 
     private int _index = 0;
     private bool _playMusic = true;
@@ -34,7 +35,7 @@ public class AudioManager : MonoBehaviour
 
     private void SpeedMusic()
     {
-        if (_source.pitch >= _maxPitchValue) return;
+        if (_increaseMusicSpeed && _source.pitch >= _maxPitchValue) return;
         _source.pitch += _pitchBoostValue;
     }
 

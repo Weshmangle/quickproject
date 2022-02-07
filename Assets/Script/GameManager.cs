@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        DisplayAllScore();
         remainingTimeBeforeAddScore = IncrementPointDelay;
         AudioManager.Instance.StartMusic();
     }
@@ -61,12 +62,12 @@ public class GameManager : MonoBehaviour
         var scale = ground.transform.localScale;
         //scale.x = Screen.width / 15;
         ground.transform.localScale = scale;
-        
+
         if (!IsGameOver)
         {
             remainingTimeBeforeAddScore -= Time.deltaTime;
 
-            if(remainingTimeBeforeAddScore <= 0)
+            if (remainingTimeBeforeAddScore <= 0)
             {
                 remainingTimeBeforeAddScore = IncrementPointDelay;
                 _distanceTraveled += IncrementPoint;
@@ -78,9 +79,8 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if(_speedGame)
+            if (_speedGame)
             {
-                Debug.Log("augmenter vitesse");
                 GlobalGameSpeed += _speedGameAddValue;
                 OnGameSpeedChanged?.Invoke();
                 _speedGame = false;
@@ -114,7 +114,34 @@ public class GameManager : MonoBehaviour
         }
 
         DataScore score = new DataScore() { HighScore = bestScore, LastScore = actualScore };
-        File.WriteAllText(_filePath, JsonUtility.ToJson(score));
+        File.WriteAllText(_filePath, JsonUtility.ToJson(score, true));
+    }
+
+    private void DisplayAllScore()
+    {
+        DataScore score = RetrieveScore();
+
+        UIManager.Instance.SetBestScore(score.HighScore);
+        UIManager.Instance.SetLastScore(score.LastScore);
+        UIManager.Instance.SetScore(_distanceTraveled);
+    }
+
+    private DataScore RetrieveScore()
+    {
+        DataScore score = new DataScore() { HighScore = 0, LastScore = 0 };
+
+        if (File.Exists(_filePath))
+        {
+            string fileTxt = File.ReadAllText(_filePath);
+            DataScore savedScore = JsonUtility.FromJson<DataScore>(fileTxt);
+
+            score.HighScore = savedScore.HighScore;
+            score.LastScore = savedScore.LastScore;
+        }
+
+        _bestDist = score.HighScore;
+
+        return score;
     }
 
     public void GameStart()

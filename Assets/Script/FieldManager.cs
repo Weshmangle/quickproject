@@ -37,8 +37,4 @@ public class FieldManager : MonoBehaviour
             _fieldSynth.tileOffset = new Vector2(_fieldSynth.tileOffset.x + offset, 0);
         }
     }
-    public void creatStarsInSky()
-    {
-        //GameObject stars = Instantiate()
-    }
 }

@@ -52,7 +52,6 @@ public class SpawnObstaclesManager : MonoBehaviour
         {
             float random = Random.Range(_minDelay, _maxDelayForSpawn);
             yield return new WaitForSeconds(random);
-            Debug.Log(random);
 
             switch (Random.Range(0, _prefabs.Length))
             {

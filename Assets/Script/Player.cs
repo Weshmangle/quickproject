@@ -11,11 +11,6 @@ public class Player : MonoBehaviour
     private float gravity = -100f;
     public Vector3 positionGravity;
 
-    void Start()
-    {
-        
-    }
-
     void Update()
     {
         isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
