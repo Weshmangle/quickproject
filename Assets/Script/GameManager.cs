@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     private string _filePath;
     private bool _isGameOver = true;
     private bool _speedGame = false;
+    private bool _firstStartGame = true;
 
     public event GameSpeedChanged OnGameSpeedChanged;
     public event GameSpeedChanged OnGameSpeedReset;
@@ -118,13 +119,17 @@ public class GameManager : MonoBehaviour
 
     public void GameStart()
     {
+        if (!_firstStartGame)
+        {
+            GlobalGameSpeed = 1f;
+            OnGameSpeedReset?.Invoke();
+        }
+
         SpawnObstaclesManager.Instance.DeleteAllObstacles();
         UIManager.Instance.ShowHideStartButton(false);
         IsGameOver = false;
         Time.timeScale = 1;
         _distanceTraveled = 0;
-        GlobalGameSpeed = 1f;
-        OnGameSpeedReset?.Invoke();
         SpawnObstaclesManager.Instance.StartSpawn();
     }
 }

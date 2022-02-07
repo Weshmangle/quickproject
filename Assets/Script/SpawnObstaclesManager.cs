@@ -30,13 +30,14 @@ public class SpawnObstaclesManager : MonoBehaviour
 
     private void Start()
     {
+        _maxDelayForSpawn = _maxDelay;
         GameManager.Instance.OnGameSpeedChanged += ReduceSpawnDelay;
         GameManager.Instance.OnGameSpeedReset += ResetSpawnDelay;
     }
 
     private void ReduceSpawnDelay()
     {
-        if (_maxDelayForSpawn <= _minDelay) return;
+        if (_maxDelayForSpawn -.1f <= _minDelay) return;
         _maxDelayForSpawn -= _reduceDelayValue;
     }
 
@@ -49,7 +50,9 @@ public class SpawnObstaclesManager : MonoBehaviour
     {
         while (_spawnObstacle)
         {
-            yield return new WaitForSeconds(Random.Range(_minDelay, _maxDelayForSpawn));
+            float random = Random.Range(_minDelay, _maxDelayForSpawn);
+            yield return new WaitForSeconds(random);
+            Debug.Log(random);
 
             switch (Random.Range(0, _prefabs.Length))
             {

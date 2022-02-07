@@ -3,8 +3,30 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] private float _moveSpeed = 1;
+    [SerializeField] private float _moveSpeedIncreaseValue = 1;
     [SerializeField] private float _XPosForDestroy = -100f;
+    [SerializeField] private float _maxMoveSpeed = 50f;
+
+    private float _actualMoveSpeed;
+
     public bool IsGroundedObject = true;
+
+    private void Start()
+    {
+        _actualMoveSpeed = _moveSpeed;
+        GameManager.Instance.OnGameSpeedChanged += IncreaseMoveSpeed;
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnGameSpeedChanged -= IncreaseMoveSpeed;
+    }
+
+    private void IncreaseMoveSpeed()
+    {
+        if (_actualMoveSpeed >= _maxMoveSpeed) return;
+        _actualMoveSpeed += _moveSpeedIncreaseValue;
+    }
 
     void Update()
     {
@@ -31,7 +53,7 @@ public class Obstacle : MonoBehaviour
     private void PerformMovement()
     {
         Vector3 pos = this.transform.position;
-        pos.x -= (_moveSpeed * Time.deltaTime) * GameManager.Instance.GlobalGameSpeed;
+        pos.x -= _actualMoveSpeed * Time.deltaTime;
         this.transform.position = pos;
     }
 }
