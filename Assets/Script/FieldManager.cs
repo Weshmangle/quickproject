@@ -5,6 +5,7 @@ using UnityEngine;
 public class FieldManager : MonoBehaviour
 {
     public TerrainLayer fieldSynth;
+    public GameObject[] _stars;
     public float offsetSpeed;
     // Start is called before the first frame update
     void Start()
@@ -22,5 +23,9 @@ public class FieldManager : MonoBehaviour
         }
           
         
+    }
+    public void creatStarsInSky()
+    {
+        //GameObject stars = Instantiate()
     }
 }
