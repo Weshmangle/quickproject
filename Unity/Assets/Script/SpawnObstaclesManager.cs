@@ -76,6 +76,7 @@ public class SpawnObstaclesManager : MonoBehaviour
             GameObject instance = Instantiate(prefab, Vector3.zero, rot, transform);
             instance.transform.localScale = instance.transform.localScale * Random.Range(1f, 2.5f);
             instance.name = prefab.name;
+            //instance.transform.FindChild("cactus_1");
             instance.transform.localPosition = new Vector3(i * Random.Range(.75f, 1), 0, 0);
         }
     }

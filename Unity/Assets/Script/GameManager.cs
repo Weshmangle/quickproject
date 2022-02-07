@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject ground;
     [SerializeField] private GameObject HItext;
     [SerializeField] private int _scorePointForAugmentGameSpeed = 15;
-    [SerializeField] private float _speedGameAddValue = .15f;
+    [SerializeField] private float _speedGameAddValue = .15f; 
 
     public static GameManager Instance;
     public int IncrementPoint = 1;
