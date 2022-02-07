@@ -7,7 +7,7 @@
         {
             "name": "Unity Editor",
             "type": "unity",
-            "path": "/c:/Users/Weshmangle - Desktop/Documents/quickproject/Library/EditorInstance.json",
+            "path": "/C:/Users/Weshmangle - Desktop/Documents/quickproject/Unity/Library/EditorInstance.json",
             "request": "launch"
         },
         {
@@ -53,7 +53,7 @@
         {
             "name": "Unity Editor",
             "type": "unity",
-            "path": "/c:/Users/Weshmangle - Desktop/Documents/quickproject/Library/EditorInstance.json",
+            "path": "/C:/Users/Weshmangle - Desktop/Documents/quickproject/Unity/Library/EditorInstance.json",
             "request": "launch"
         },
         {
