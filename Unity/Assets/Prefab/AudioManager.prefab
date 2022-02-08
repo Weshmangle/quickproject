@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musics: []
   _source: {fileID: 1042840834}
+  _soundEffectMixer: {fileID: 24300002, guid: f42508c196cadbc4eaba4845391d9c04, type: 2}
   _pitchBoostValue: 0.01
   _maxPitchValue: 1
   _increaseMusicSpeed: 0

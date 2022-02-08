@@ -1043,11 +1043,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512381445}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1808992232 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8107561005070945155, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
-  m_PrefabInstance: {fileID: 718682579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &253053568984712855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1173,10 +1168,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 7247625971696909017, guid: 0ca3f51c376545c48a6f7447f1c8e608, type: 3}
-      propertyPath: HItext
-      value: 
-      objectReference: {fileID: 1808992232}
     - target: {fileID: 7247625971696909017, guid: 0ca3f51c376545c48a6f7447f1c8e608, type: 3}
       propertyPath: ground
       value: 
