@@ -4,7 +4,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject ground;
-    [SerializeField] private GameObject HItext;
     [SerializeField] private int _scorePointForAugmentGameSpeed = 15;
     [SerializeField] private float _speedGameAddValue = .15f; 
 
@@ -110,7 +109,7 @@ public class GameManager : MonoBehaviour
         SaveScore(_bestDist, _distanceTraveled);
 
         _distanceTraveled = 0;
-        HItext.SetActive(true);
+        UIManager.Instance.ShowHideBestText(true);
     }
 
 

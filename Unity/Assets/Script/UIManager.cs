@@ -67,4 +67,9 @@ public class UIManager : MonoBehaviour
     {
         _mainText.text = text;
     }
+
+    public void ShowHideBestText(bool value)
+    {
+        _bestScoreText.gameObject.SetActive(value);
+    }
 }
