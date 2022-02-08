@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask obstacleLayer;
     
     [SerializeField] private bool isGrounded, isCrouched;
+    [SerializeField] private float stopCrouchTime, gameTime;
 
     private float jumpHeight = 4f;
     private float gravity = -100f;
@@ -47,12 +49,24 @@ public class Player : MonoBehaviour
             var scale = transform.localScale;        
             scale.y = .5f;
             transform.localScale = scale;
+            //StartCoroutine(StopCrouch());
+            /*
+
+            Time.time c'est le temps total depuis le demarage du jeu
+            si le temps de jeu est plus grand que le temps de jeu sauvegardé quand on a crouche + crouchetime (le cd) le dino se releve
+            on peut spam la touche pour rester accroupi et il restera toujours accroupi "stopcrouchtime" seconde
+            */
+            if (Time.time > gameTime+stopCrouchTime)
+            {
+                isCrouched = false;
+            }
         }
         else
         {
             var scale = transform.localScale;        
             scale.y = 1f;
             transform.localScale = scale;
+            //StopCoroutine(StopCrouch());
         }
         
         //var position = transform.position;
@@ -69,7 +83,8 @@ public class Player : MonoBehaviour
     }
     public void Crouch()
     {
-        isCrouched = true;        
+        isCrouched = true;   
+        gameTime = Time.time;     
     }
     public void Die()
     {
@@ -89,4 +104,10 @@ public class Player : MonoBehaviour
             _meshes[1].SetActive(false);
         }*/
     }
+    private IEnumerator StopCrouch()
+    {        
+        //ca marche mais ca bug
+        yield return new WaitForSeconds(1);
+        isCrouched = false;        
+    } 
 }
