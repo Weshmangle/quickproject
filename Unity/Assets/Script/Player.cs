@@ -7,20 +7,27 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject[] _meshesAnimation;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
-    
-    [SerializeField] private bool isGrounded, isCrouched;
+    [SerializeField] private AudioClip _jumpSound;    
     [SerializeField] private float stopCrouchTime, gameTime;
 
+    private bool _isGrounded, _isCrouched;
     private float jumpHeight = 4f;
     private float gravity = -100f;
-    public Vector3 positionGravity;
     private float index = 0;
+    private CharacterController _cc;
+
+    public Vector3 positionGravity;
+
+    private void Start()
+    {
+        _cc = GetComponent<CharacterController>();
+    }
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
+        _isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
         
-        if(isGrounded && positionGravity.y < 0)
+        if(_isGrounded && positionGravity.y < 0)
         {
             positionGravity.y = 0;
         }
@@ -29,15 +36,11 @@ public class Player : MonoBehaviour
             positionGravity.y += gravity * Time.deltaTime;
         }
 
-        GetComponent<CharacterController>().Move(new Vector3(0, 0, 0 ));
-
-        //Jump();
-        //Crouch();
-        GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
-
+        _cc.Move(new Vector3(0, 0, 0 ));
+        _cc.Move(positionGravity * Time.deltaTime);
       
         //ShowHideCrouchMesh();
-        if(isCrouched)
+        if(_isCrouched)
         {
             var scale = transform.localScale;        
             //scale.y = .5f;
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
             _meshesAnimation[1].SetActive(false);
             if (Time.time > gameTime+stopCrouchTime)
             {
-                isCrouched = false;
+                _isCrouched = false;
             }
         }
         else
@@ -75,23 +78,20 @@ public class Player : MonoBehaviour
             }
 
             _meshesAnimation[Mathf.FloorToInt(index)].SetActive(true);
-        }
-        
-        //var position = transform.position;
-        //position.x = -Screen.width / 40;
-        //transform.position = position;
+        }        
     }
 
     public void Jump()
     {
-        if(isGrounded)
+        if(_isGrounded)
         {
             positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
+            AudioManager.Instance.PlayClipAt(_jumpSound, transform.position);
         }
     }
     public void Crouch()
     {
-        isCrouched = true;   
+        _isCrouched = true;   
         gameTime = Time.time;     
     }
     public void Die()
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
 
     private void ShowHideCrouchMesh()
     {
-        if (isCrouched)
+        if (_isCrouched)
         {
             _meshes[0].SetActive(false);
             _meshes[1].SetActive(true);
@@ -116,6 +116,6 @@ public class Player : MonoBehaviour
     {        
         //ca marche mais ca bug
         yield return new WaitForSeconds(1);
-        isCrouched = false;        
+        _isCrouched = false;        
     } 
 }

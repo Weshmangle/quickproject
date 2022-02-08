@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _musics;
     [SerializeField] private AudioSource _source;
+    [SerializeField] AudioMixerGroup _soundEffectMixer;
     [SerializeField] private float _pitchBoostValue = .01f;
     [SerializeField] private float _maxPitchValue = 1.2f;
     [SerializeField] private bool _increaseMusicSpeed = true;
@@ -43,6 +45,20 @@ public class AudioManager : MonoBehaviour
     {
         _source.pitch = 1f;
         _source.Play();
+    }
+
+    public AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
+    {
+        if (clip == null) return null;
+        //Création d'un gameObject temporaire
+        GameObject tempGO = new GameObject("TempAudio");
+        tempGO.transform.position = pos;
+        AudioSource audioSource = tempGO.AddComponent<AudioSource>();
+        audioSource.clip = clip;
+        audioSource.outputAudioMixerGroup = _soundEffectMixer;
+        audioSource.Play();
+        Destroy(tempGO, clip.length);
+        return audioSource;
     }
 
     private IEnumerator PlayMusic()
