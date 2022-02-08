@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5255694, g: 0.5180711, b: 0.55487716, a: 1}
+  m_IndirectSpecularColor: {r: 0.5255682, g: 0.51807, b: 0.55487573, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -165,7 +165,7 @@ PrefabInstance:
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1339300743}
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -176,15 +176,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: 
+      value: Play
       objectReference: {fileID: 0}
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: Player, Assembly-CSharp
+      value: UnityEngine.AudioSource, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4535663841582530687, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: 
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4535663842039648224, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -783,7 +783,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
   m_PrefabInstance: {fileID: 3971210142387406687}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1339300740}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a97e183fdc099134c9aa64b6823f5246, type: 3}
@@ -1049,6 +1049,107 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1339300740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3971210143037011240, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+  m_PrefabInstance: {fileID: 3971210142387406687}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1339300743
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339300740}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5e6c5cf234e319346ac41f00f609be08, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1512381445
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,6 +1377,14 @@ PrefabInstance:
     - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: JumpForce
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: stopCouchTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: stopCrouchTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: groundLayers.m_Bits
