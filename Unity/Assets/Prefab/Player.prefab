@@ -91,9 +91,10 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 128
+  _jumpSound: {fileID: 8300000, guid: 5e6c5cf234e319346ac41f00f609be08, type: 3}
   isGrounded: 0
   isCrouched: 0
-  stopCrouchTime: 0
+  stopCrouchTime: 1
   gameTime: 0
   positionGravity: {x: 0, y: 0, z: 0}
 --- !u!143 &8855348674646249595
