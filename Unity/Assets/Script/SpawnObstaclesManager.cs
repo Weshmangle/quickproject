@@ -8,7 +8,6 @@ public class SpawnObstaclesManager : MonoBehaviour
     [SerializeField] private float _minDelay = .5f;
     [SerializeField] private float _maxDelay = 2f;
     [SerializeField] private float _reduceDelayValue = .25f;
-
     [SerializeField] private GameObject[] _prefabs;
     [SerializeField] private float _minYPosForNotGroundedObject = 1f;
     [SerializeField] private float _maxYPosForNotGroundedObject = 3f;

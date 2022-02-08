@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject[] _meshes;
+    [SerializeField] private GameObject[] _meshesAnimation;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
     
@@ -11,6 +12,7 @@ public class Player : MonoBehaviour
     private float jumpHeight = 4f;
     private float gravity = -100f;
     public Vector3 positionGravity;
+    private float index = 0;
 
     void Update()
     {
@@ -31,6 +33,14 @@ public class Player : MonoBehaviour
         //Crouch();
         GetComponent<CharacterController>().Move(positionGravity * Time.deltaTime);
 
+        index = (index + .05f)%_meshesAnimation.Length;
+
+        foreach (var mesh in _meshesAnimation)
+        {
+            mesh.SetActive(false);
+        }
+
+        _meshesAnimation[Mathf.FloorToInt(index)].SetActive(true);
         
         if(isCrouched)
         {

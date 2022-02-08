@@ -60,6 +60,12 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetMouseButton(0) && IsGameOver)
+        {
+            IsGameOver = false;
+            GameStart();
+        }
+
         var scale = ground.transform.localScale;
         //scale.x = Screen.width / 15;
         ground.transform.localScale = scale;
@@ -93,6 +99,8 @@ public class GameManager : MonoBehaviour
     {
         IsGameOver = true;
         SpawnObstaclesManager.Instance.StopSpawn();
+        UIManager.Instance.ShowMainText(true);
+        UIManager.Instance.SetTextMain("Game Over");
         //UIManager.Instance.SetLastScore(_distanceTraveled);
         if (_distanceTraveled > _bestDist)
         {
@@ -102,7 +110,6 @@ public class GameManager : MonoBehaviour
         SaveScore(_bestDist, _distanceTraveled);
 
         _distanceTraveled = 0;
-        UIManager.Instance.ShowHideStartButton(true);
         HItext.SetActive(true);
     }
 
@@ -156,7 +163,7 @@ public class GameManager : MonoBehaviour
         
         GlobalGameSpeed = 1f;
         SpawnObstaclesManager.Instance.DeleteAllObstacles();
-        UIManager.Instance.ShowHideStartButton(false);
+        UIManager.Instance.ShowMainText(false);
         IsGameOver = false;
         Time.timeScale = 1;
         _distanceTraveled = 0;

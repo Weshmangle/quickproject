@@ -5,8 +5,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText;
-    [SerializeField] private Button _startButton;
+    [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText, _mainText;
 
     private void Awake()
     {
@@ -59,8 +58,13 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.GameStart();
     }
 
-    public void ShowHideStartButton(bool value)
+    public void ShowMainText(bool value)
     {
-        _startButton.gameObject.SetActive(value);
+        _mainText.gameObject.SetActive(value);
+    }
+
+    public void SetTextMain(string text)
+    {
+        _mainText.text = text;
     }
 }
