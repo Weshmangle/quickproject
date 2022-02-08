@@ -50,7 +50,6 @@ public class AudioManager : MonoBehaviour
     public AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
     {
         if (clip == null) return null;
-        //Création d'un gameObject temporaire
         GameObject tempGO = new GameObject("TempAudio");
         tempGO.transform.position = pos;
         AudioSource audioSource = tempGO.AddComponent<AudioSource>();

@@ -100,12 +100,12 @@ public class GameManager : MonoBehaviour
         SpawnObstaclesManager.Instance.StopSpawn();
         UIManager.Instance.ShowMainText(true);
         UIManager.Instance.SetTextMain("Game Over");
-        //UIManager.Instance.SetLastScore(_distanceTraveled);
         if (_distanceTraveled > _bestDist)
         {
             _bestDist = _distanceTraveled;
             UIManager.Instance.SetBestScore(_bestDist);
         }
+        
         SaveScore(_bestDist, _distanceTraveled);
 
         _distanceTraveled = 0;
@@ -115,7 +115,6 @@ public class GameManager : MonoBehaviour
 
     private void SaveScore(int bestScore, int actualScore)
     {
-        //TODO try except
         if (!File.Exists(_filePath))
         {
             File.WriteAllText(_filePath, string.Empty);
@@ -157,7 +156,7 @@ public class GameManager : MonoBehaviour
     {
         if (!_firstStartGame)
         {
-            OnGameSpeedReset?.Invoke();            
+            OnGameSpeedReset?.Invoke();
         }
         
         GlobalGameSpeed = 1f;

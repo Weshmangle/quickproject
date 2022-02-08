@@ -3,17 +3,17 @@ using System.Collections;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject[] _meshes;
-    [SerializeField] private GameObject[] _meshesAnimation;
+    [SerializeField] private GameObject[] _meshesAnimationsDown;
+    [SerializeField] private GameObject[] _meshesAnimationNormal;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
-    [SerializeField] private AudioClip _jumpSound;    
+    [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private float stopCrouchTime, gameTime;
 
-    private bool _isGrounded, _isCrouched;
-    private float jumpHeight = 4f;
+    public bool _isGrounded, _isCrouched;
+    private float jumpHeight = 1f;
     private float gravity = -100f;
-    private float index = 0;
+    private float stepAnimation = 0;
     private CharacterController _cc;
 
     public Vector3 positionGravity;
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if(GameManager.Instance.IsGameOver) return;
+
         _isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
         
         if(_isGrounded && positionGravity.y < 0)
@@ -39,24 +41,18 @@ public class Player : MonoBehaviour
         _cc.Move(new Vector3(0, 0, 0 ));
         _cc.Move(positionGravity * Time.deltaTime);
       
-        //ShowHideCrouchMesh();
         if(_isCrouched)
         {
-            var scale = transform.localScale;        
-            //scale.y = .5f;
+            var scale = transform.localScale;
             transform.localScale = scale;
-
-            //StartCoroutine(StopCrouch());
-            /*
-
-            Time.time c'est le temps total depuis le demarage du jeu
-            si le temps de jeu est plus grand que le temps de jeu sauvegardé quand on a crouche + crouchetime (le cd) le dino se releve
-            on peut spam la touche pour rester accroupi et il restera toujours accroupi "stopcrouchtime" seconde
-            */
-            _meshes[0].SetActive(false);
-            _meshes[1].SetActive(true);
-            _meshesAnimation[0].SetActive(false);
-            _meshesAnimation[1].SetActive(false);
+            _meshesAnimationsDown[0].SetActive(false);
+            _meshesAnimationsDown[1].SetActive(true);
+            
+            foreach (var item in _meshesAnimationNormal)
+            {
+                item.SetActive(false);
+            }
+            
             if (Time.time > gameTime+stopCrouchTime)
             {
                 _isCrouched = false;
@@ -64,21 +60,23 @@ public class Player : MonoBehaviour
         }
         else
         {
-            var scale = transform.localScale;        
+            var scale = transform.localScale;
             scale.y = 1f;
             transform.localScale = scale;
-            //StopCoroutine(StopCrouch());
-            _meshes[0].SetActive(true);
-            _meshes[1].SetActive(false);
-            index = (index + .05f)%_meshesAnimation.Length;
+            stepAnimation = (stepAnimation + .05f)%_meshesAnimationNormal.Length;
 
-            foreach (var mesh in _meshesAnimation)
+            foreach (var mesh in _meshesAnimationNormal)
             {
                 mesh.SetActive(false);
             }
 
-            _meshesAnimation[Mathf.FloorToInt(index)].SetActive(true);
-        }        
+            _meshesAnimationNormal[Mathf.FloorToInt(stepAnimation)].SetActive(true);
+        }
+        
+        if(Input.GetButton("Jump"))
+        {
+            Jump();
+        }
     }
 
     public void Jump()
@@ -103,19 +101,19 @@ public class Player : MonoBehaviour
     {
         if (_isCrouched)
         {
-            _meshes[0].SetActive(false);
-            _meshes[1].SetActive(true);
+            _meshesAnimationsDown[0].SetActive(false);
+            _meshesAnimationsDown[1].SetActive(true);
         }
         else
         {
-            _meshes[0].SetActive(true);
-            _meshes[1].SetActive(false);
+            _meshesAnimationsDown[0].SetActive(true);
+            _meshesAnimationsDown[1].SetActive(false);
         }
     }
     private IEnumerator StopCrouch()
     {        
         //ca marche mais ca bug
         yield return new WaitForSeconds(1);
-        _isCrouched = false;        
+        _isCrouched = false;
     } 
 }

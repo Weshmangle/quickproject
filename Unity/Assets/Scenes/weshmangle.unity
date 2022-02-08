@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2257448664992374721, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2257448664992374721, guid: 305937e3de9585f4882b59b5f752304e, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1050,6 +1050,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1042840834, guid: a5c97a7d97b19834eb13e4dc934da5f7, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1520929410478590193, guid: a5c97a7d97b19834eb13e4dc934da5f7, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -1151,9 +1155,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: _meshesAnimationsDown.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: _meshesAnimationNormal.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: _meshesAnimationsDown.Array.data[0]
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: bde3cbd208e9a2946abe906d460074c0, type: 3}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: _meshesAnimationsDown.Array.data[1]
+      value: 
+      objectReference: {fileID: -927199367670048503, guid: bde3cbd208e9a2946abe906d460074c0, type: 3}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: _meshesAnimationNormal.Array.data[0]
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 93593964ce97d01458d1eb954360a1db, type: 3}
+    - target: {fileID: 3971210143037011238, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: _meshesAnimationNormal.Array.data[1]
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: 3bec08c331aefba42807760d5dbad0bb, type: 3}
     - target: {fileID: 3971210143037011240, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855348674646249595, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}
+      propertyPath: m_Height
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1391888d89a59d442b8c27a2d5907196, type: 3}

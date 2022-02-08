@@ -79,10 +79,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97e183fdc099134c9aa64b6823f5246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshes:
-  - {fileID: 4917226571992296636}
+  _meshesAnimationsDown:
   - {fileID: 4917226571266106895}
-  _meshesAnimation:
+  - {fileID: 5277601156437893497}
+  _meshesAnimationNormal:
   - {fileID: 4917226571992296636}
   - {fileID: 7996756464679110615}
   groundLayer:
@@ -92,10 +92,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _jumpSound: {fileID: 8300000, guid: 5e6c5cf234e319346ac41f00f609be08, type: 3}
-  isGrounded: 0
-  isCrouched: 0
   stopCrouchTime: 1
   gameTime: 0
+  _isGrounded: 0
+  _isCrouched: 0
   positionGravity: {x: 0, y: 0, z: 0}
 --- !u!143 &8855348674646249595
 CharacterController:
