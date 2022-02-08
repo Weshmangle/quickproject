@@ -59,11 +59,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButton(0) && IsGameOver)
+/*        if(Input.GetMouseButton(0) && IsGameOver)
         {
             IsGameOver = false;
             GameStart();
-        }
+        }*/
 
         var scale = ground.transform.localScale;
         //scale.x = Screen.width / 15;

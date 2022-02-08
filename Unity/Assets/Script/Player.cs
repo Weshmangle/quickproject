@@ -23,13 +23,18 @@ public class Player : MonoBehaviour
         _cc = GetComponent<CharacterController>();
     }
 
+    private bool CalculateIsGrounded()
+    {
+        return Physics.CheckSphere(transform.position, .1f, groundLayer, QueryTriggerInteraction.Ignore); ;
+    }
+
     void Update()
     {
-        if(GameManager.Instance.IsGameOver) return;
+        if (GameManager.Instance.IsGameOver) return;
 
-        _isGrounded = Physics.CheckSphere(transform.position, 0.1f, groundLayer, QueryTriggerInteraction.Ignore);
-        
-        if(_isGrounded && positionGravity.y < 0)
+        _isGrounded = CalculateIsGrounded();
+
+        if (_isGrounded && positionGravity.y < 0)
         {
             positionGravity.y = 0;
         }
@@ -38,22 +43,22 @@ public class Player : MonoBehaviour
             positionGravity.y += gravity * Time.deltaTime;
         }
 
-        _cc.Move(new Vector3(0, 0, 0 ));
+        _cc.Move(new Vector3(0, 0, 0));
         _cc.Move(positionGravity * Time.deltaTime);
-      
-        if(_isCrouched)
+
+        if (_isCrouched)
         {
             var scale = transform.localScale;
             transform.localScale = scale;
             _meshesAnimationsDown[0].SetActive(false);
             _meshesAnimationsDown[1].SetActive(true);
-            
+
             foreach (var item in _meshesAnimationNormal)
             {
                 item.SetActive(false);
             }
-            
-            if (Time.time > gameTime+stopCrouchTime)
+
+            if (Time.time > gameTime + stopCrouchTime)
             {
                 _isCrouched = false;
             }
@@ -63,7 +68,7 @@ public class Player : MonoBehaviour
             var scale = transform.localScale;
             scale.y = 1f;
             transform.localScale = scale;
-            stepAnimation = (stepAnimation + .05f)%_meshesAnimationNormal.Length;
+            stepAnimation = (stepAnimation + .05f) % _meshesAnimationNormal.Length;
 
             foreach (var mesh in _meshesAnimationNormal)
             {
@@ -73,7 +78,11 @@ public class Player : MonoBehaviour
             _meshesAnimationNormal[Mathf.FloorToInt(stepAnimation)].SetActive(true);
         }
 
+<<<<<<< HEAD
         //if(Input.GetButton("Jump"))
+=======
+        if (Input.GetButton("Jump"))
+>>>>>>> e89c82faa42e432f3c706c1e5ff65111bdd6ef67
         {
             Jump();
         }
@@ -81,39 +90,25 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if(_isGrounded)
+        if (_isGrounded && _cc.isGrounded)
         {
-            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity);
+            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity) * 2;
             AudioManager.Instance.PlayClipAt(_jumpSound, transform.position);
         }
     }
     public void Crouch()
     {
-        _isCrouched = true;   
-        gameTime = Time.time;     
+        _isCrouched = true;
+        gameTime = Time.time;
     }
     public void Die()
     {
         GameManager.Instance.GameOver();
     }
 
-    private void ShowHideCrouchMesh()
+    private void OnDrawGizmosSelected()
     {
-        if (_isCrouched)
-        {
-            _meshesAnimationsDown[0].SetActive(false);
-            _meshesAnimationsDown[1].SetActive(true);
-        }
-        else
-        {
-            _meshesAnimationsDown[0].SetActive(true);
-            _meshesAnimationsDown[1].SetActive(false);
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, .1f);
     }
-    private IEnumerator StopCrouch()
-    {        
-        //ca marche mais ca bug
-        yield return new WaitForSeconds(1);
-        _isCrouched = false;
-    } 
 }
