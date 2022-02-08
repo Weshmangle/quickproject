@@ -28,6 +28,20 @@ public class Player : MonoBehaviour
         return Physics.CheckSphere(transform.position, .1f, groundLayer, QueryTriggerInteraction.Ignore); ;
     }
 
+    public void OnJump()
+    {
+        if(GameManager.Instance.IsGameOver)
+        {
+            GameManager.Instance.GameStart();
+        }
+        Jump();
+    }
+
+    public void OnCrouch()
+    {
+        Crouch();
+    }
+
     void Update()
     {
         if (GameManager.Instance.IsGameOver) return;

@@ -22,6 +22,11 @@ public class UIManager : MonoBehaviour
         var position = transform.position;
     }
 
+    public void OnStartGame()
+    {
+        Debug.Log("Click menu");
+    }
+
     public void SetScore(int score)
     {
         string a = "0";
