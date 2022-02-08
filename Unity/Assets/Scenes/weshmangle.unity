@@ -631,7 +631,7 @@ MonoBehaviour:
   _prefabs:
   - {fileID: 5945187466654482834, guid: 0f6fcf224ca2400468c211567b16acb3, type: 3}
   - {fileID: 7402048892180325513, guid: 52e15d0c23abe4147a1cd2b7ac58c8a5, type: 3}
-  _minYPosForNotGroundedObject: 0.5
+  _minYPosForNotGroundedObject: 1
   _maxYPosForNotGroundedObject: 4
 --- !u!4 &726710240
 Transform:
@@ -1156,6 +1156,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1042840834, guid: a5c97a7d97b19834eb13e4dc934da5f7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: eaae0355ee067dd45a5f271192754b96, type: 3}
     - target: {fileID: 1520929410478590193, guid: a5c97a7d97b19834eb13e4dc934da5f7, type: 3}
       propertyPath: m_Name
       value: AudioManager

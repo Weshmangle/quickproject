@@ -52,15 +52,12 @@ public class SpawnObstaclesManager : MonoBehaviour
             float random = Random.Range(_minDelay, _maxDelayForSpawn);
             yield return new WaitForSeconds(random);
 
-            switch (Random.Range(0, _prefabs.Length))
-            {
-                case 0:
-                    InstantiateCactus();
-                    break;
-                case 1:
-                    InstantiateBird();
-                    break;
-            }
+            var rating = Random.Range(0, 1f);
+
+            if(rating <= .75)
+                InstantiateCactus();
+            else
+                InstantiateBird();
         }
     }
 
@@ -73,9 +70,8 @@ public class SpawnObstaclesManager : MonoBehaviour
             var rot = Quaternion.AngleAxis(180 * Random.Range(0, 1), Vector3.up);
 
             GameObject instance = Instantiate(prefab, Vector3.zero, rot, transform);
-            instance.transform.localScale = instance.transform.localScale * Random.Range(1f, 2.5f);
+            instance.transform.localScale = instance.transform.localScale * Random.Range(1.5f, 2.5f);
             instance.name = prefab.name;
-            //instance.transform.FindChild("cactus_1");
             instance.transform.localPosition = new Vector3(i * Random.Range(.75f, 1), 0, 0);
         }
     }
@@ -85,7 +81,7 @@ public class SpawnObstaclesManager : MonoBehaviour
         GameObject prefab = GetPrefabAt(1);
         GameObject instance = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
 
-        float scale = Random.Range(.75f, 1.5f);
+        float scale = Random.Range(1.25f, 1.5f);
         instance.transform.localScale = new Vector3(scale, scale, scale);
 
         float y = Random.Range(_minYPosForNotGroundedObject, _maxYPosForNotGroundedObject);
