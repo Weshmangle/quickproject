@@ -44,8 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb3ca281bf36504d821edf6006c1515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musics:
-  - {fileID: 8300000, guid: eaae0355ee067dd45a5f271192754b96, type: 3}
+  _musics: []
   _source: {fileID: 1042840834}
   _pitchBoostValue: 0.01
   _maxPitchValue: 1
