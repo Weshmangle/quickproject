@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
         SpawnObstaclesManager.Instance.StopSpawn();
         UIManager.Instance.ShowMainText(true);
-        UIManager.Instance.SetTextMain("Game Over");
+        UIManager.Instance.SetTextMain("Game Over \n Touch screen \nfor restart");
         if (_distanceTraveled > _bestDist)
         {
             _bestDist = _distanceTraveled;

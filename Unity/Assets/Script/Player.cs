@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
 
     public void OnJump()
     {
+        Debug.Log("OnJump");
         if(GameManager.Instance.IsGameOver)
         {
             GameManager.Instance.GameStart();
