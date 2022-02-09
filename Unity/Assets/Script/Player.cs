@@ -11,14 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private float stopCrouchTime, gameTime;
 
-<<<<<<< HEAD
     public bool _isGrounded, _isCrouched;
-    private float jumpHeight = 1.25f;
-=======
-    private bool _isGrounded;
-    private bool _isCrouched;
-    private float jumpHeight = 1f;
->>>>>>> c9b7d63897e881b17a37985433f4dabfb4344527
+    private float jumpHeight = 1.1f;
     private float gravity = -100f;
     private float stepAnimation = 0;
     private CharacterController _cc;
@@ -32,7 +26,6 @@ public class Player : MonoBehaviour
             _isCrouched = value;
             StopAllCoroutines();
             _playAnimation = true;
-            StartCoroutine(Animation());
         }
     }
 
@@ -76,7 +69,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            positionGravity.y += gravity * Time.deltaTime;
+            positionGravity.y += (gravity * (_isCrouched ? 2 : 1))  * Time.deltaTime;
         }
 
         _cc.Move(new Vector3(0, 0, 0));
@@ -86,10 +79,8 @@ public class Player : MonoBehaviour
         {
             var scale = transform.localScale;
             transform.localScale = scale;
-            _meshesAnimationsDown[0].SetActive(false);
-            _meshesAnimationsDown[1].SetActive(true);
 
-            foreach (var item in _meshesAnimationNormal)
+            foreach (var item in _meshesAnimationsDown)
             {
                 item.SetActive(false);
             }
@@ -104,58 +95,15 @@ public class Player : MonoBehaviour
             var scale = transform.localScale;
             scale.y = 1f;
             transform.localScale = scale;
-            //stepAnimation = (stepAnimation + .05f) % _meshesAnimationNormal.Length;
+            stepAnimation = (stepAnimation + .05f) % _meshesAnimationNormal.Length;
 
-            //foreach (var mesh in _meshesAnimationNormal)
-            //{
-            //    mesh.SetActive(false);
-            //}
-
-            //_meshesAnimationNormal[Mathf.FloorToInt(stepAnimation)].SetActive(true);
+            foreach (var mesh in _meshesAnimationNormal)
+            {
+                mesh.SetActive(false);
+            }
+            _meshesAnimationNormal[Mathf.FloorToInt(stepAnimation)].SetActive(true);
         }
     }
-
-    public void StartAnimation()
-    {
-        StartCoroutine(Animation());
-    }
-
-    private IEnumerator Animation()
-    {
-        while (_playAnimation)
-        {
-            if (_isCrouched)
-            {
-                foreach (var item in _meshesAnimationNormal)
-                {
-                    item.SetActive(false);
-                }
-
-                _meshesAnimationsDown[0].SetActive(true);
-                _meshesAnimationsDown[1].SetActive(false);
-                yield return new WaitForSeconds(_animationDuration);
-                _meshesAnimationsDown[0].SetActive(false);
-                _meshesAnimationsDown[1].SetActive(true);
-                yield return new WaitForSeconds(_animationDuration);
-            }
-            else
-            {
-                foreach (var item in _meshesAnimationsDown)
-                {
-                    item.SetActive(false);
-                }
-
-                _meshesAnimationNormal[0].SetActive(true);
-                _meshesAnimationNormal[1].SetActive(false);
-                yield return new WaitForSeconds(_animationDuration);
-                _meshesAnimationNormal[0].SetActive(false);
-                _meshesAnimationNormal[1].SetActive(true);
-                yield return new WaitForSeconds(_animationDuration);
-            }
-        }
-
-    }
-
 
     public void Jump()
     {

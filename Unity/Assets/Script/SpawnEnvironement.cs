@@ -10,26 +10,24 @@ public class SpawnEnvironement : MonoBehaviour
     public bool _spawn = true;
     private List<GameObject> clouds = new List<GameObject>();
     private List<GameObject> grounds = new List<GameObject>();
-<<<<<<< HEAD
-    [SerializeField] private float _XPosForDestroy = -100f;
 
-=======
-    public void SpawnFirstGround()
+    private IEnumerator IEClouds;
+    private IEnumerator IEGrounds;
+
+    public void SpawnFirstGround() 
     {
         for (int i = 0; i < 100; i++)
         {
             float randx = Random.Range(-20.0f,45.0f);
             float randz = Random.Range(-3.0f,3.0f);
-            GameObject ground = Instantiate(prefabGround, new Vector3(randx,0.1f,randz),Quaternion.identity);
+            GameObject ground = Instantiate(prefabGround, new Vector3(randx,0.1f,randz), Quaternion.identity, transform);
             ground.transform.localScale = new Vector3(Random.Range(.125f/2, .125f), 1, Random.Range(.125f/2, .125f));
             grounds.Add(ground);
         }
         
     }
->>>>>>> c9b7d63897e881b17a37985433f4dabfb4344527
     private void Awake()
     {
-        SpawnFirstGround();
         if (Instance != null)
         {
             Debug.LogError("Instance of SpawnEnvironement already exist");
@@ -41,9 +39,37 @@ public class SpawnEnvironement : MonoBehaviour
 
 
     public void StartSpawn()
-    {
-        StartCoroutine(SpawnClouds());
-        StartCoroutine(SpawnGrounds());
+    {    
+        foreach (var cloud in clouds)
+        {
+            Destroy(cloud);
+        }
+
+        foreach (var ground in grounds)
+        {
+            Destroy(ground);
+        }
+
+        clouds.Clear();
+        grounds.Clear();
+
+        SpawnFirstGround();
+
+        if(IEClouds != null)
+        {
+            StopCoroutine(IEClouds);
+        }
+
+        if(IEGrounds != null)
+        {
+            StopCoroutine(IEGrounds);
+        }
+
+        IEClouds = SpawnClouds();
+        IEGrounds = SpawnGrounds();
+        
+        StartCoroutine(IEGrounds);
+        StartCoroutine(IEClouds);
     }
 
     public void Update()
@@ -62,52 +88,6 @@ public class SpawnEnvironement : MonoBehaviour
                 var position = ground.transform.position;
                 position.x -= 20 * Time.deltaTime;
                 ground.transform.position = position;
-            }
-        }
-        else
-        {
-            foreach (var cloud in clouds)
-            {
-                Destroy(cloud);
-            }
-
-            foreach (var ground in grounds)
-            {
-                Destroy(ground);
-            }
-
-            clouds.Clear();
-            grounds.Clear();
-        }
-
-        destroyEnvironementOutCamera();
-    }
-
-    private void destroyEnvironementOutCamera()
-    {
-        int index = 0;
-        while(index < grounds.Count)
-        {
-            if(grounds[index].transform.position.x < _XPosForDestroy)
-            {
-                Destroy(grounds[index]);
-            }
-            else
-            {
-                index++;
-            }
-        }
-        index = 0;
-        while(index < clouds.Count)
-        {
-            if(clouds[index].transform.position.x < _XPosForDestroy)
-            {
-                Destroy(clouds[index]);
-                clouds.RemoveAt(index);
-            }
-            else
-            {
-                index++;
             }
         }
     }
