@@ -4,13 +4,26 @@ using System.Collections.Generic;
 
 public class SpawnEnvironement : MonoBehaviour
 {
+    public static SpawnEnvironement Instance;
     public GameObject prefabCloud;
     public GameObject prefabGround;
     public bool _spawn = true;
     private List<GameObject> clouds = new List<GameObject>();
     private List<GameObject> grounds = new List<GameObject>();
 
-    private void Start()
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Instance of SpawnEnvironement already exist");
+            return;
+        }
+
+        Instance = this;
+    }
+
+
+    public void StartSpawn()
     {
         StartCoroutine(SpawnClouds());
         StartCoroutine(SpawnGrounds());

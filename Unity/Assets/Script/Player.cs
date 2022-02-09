@@ -92,11 +92,6 @@ public class Player : MonoBehaviour
 
             _meshesAnimationNormal[Mathf.FloorToInt(stepAnimation)].SetActive(true);
         }
-
-        //if(Input.GetButton("Jump"))
-        {
-            //Jump();
-        }
     }
 
     public void Jump()
