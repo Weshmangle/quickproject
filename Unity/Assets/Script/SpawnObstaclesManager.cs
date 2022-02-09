@@ -36,7 +36,7 @@ public class SpawnObstaclesManager : MonoBehaviour
 
     private void ReduceSpawnDelay()
     {
-        if (_maxDelayForSpawn -.1f <= _minDelay) return;
+        if (_maxDelayForSpawn -.05f <= _minDelay) return;
         _maxDelayForSpawn -= _reduceDelayValue;
     }
 
@@ -65,14 +65,14 @@ public class SpawnObstaclesManager : MonoBehaviour
     {
         GameObject prefab = GetPrefabAt(0);
 
-        for (var i = 0; i < Random.Range(1, 3); i++)
+        for (var i = 0; i < Random.Range(1, 5); i++)
         {
             var rot = Quaternion.AngleAxis(180 * Random.Range(0, 1), Vector3.up);
 
             GameObject instance = Instantiate(prefab, Vector3.zero, rot, transform);
             instance.transform.localScale = instance.transform.localScale * Random.Range(1.5f, 2.5f);
             instance.name = prefab.name;
-            instance.transform.localPosition = new Vector3(i * Random.Range(.75f, 1), 0, 0);
+            instance.transform.localPosition = new Vector3(i * (Random.Range(.75f, 1) + instance.transform.localScale.x * .25f), 0, 0);
         }
     }
 

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float stopCrouchTime, gameTime;
 
     public bool _isGrounded, _isCrouched;
-    private float jumpHeight = 1f;
+    private float jumpHeight = 1.25f;
     private float gravity = -100f;
     private float stepAnimation = 0;
     private CharacterController _cc;
@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
     public void Jump()
     {
-        if (_isGrounded && _cc.isGrounded)
+        if (_isGrounded )
         {
             positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity) * 2;
             AudioManager.Instance.PlayClipAt(_jumpSound, transform.position);

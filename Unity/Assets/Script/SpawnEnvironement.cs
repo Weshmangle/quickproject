@@ -10,6 +10,7 @@ public class SpawnEnvironement : MonoBehaviour
     public bool _spawn = true;
     private List<GameObject> clouds = new List<GameObject>();
     private List<GameObject> grounds = new List<GameObject>();
+    [SerializeField] private float _XPosForDestroy = -100f;
 
     private void Awake()
     {
@@ -36,7 +37,7 @@ public class SpawnEnvironement : MonoBehaviour
             foreach (var cloud in clouds)
             {
                 var position = cloud.transform.position;
-                position.x -= .1f;
+                position.x -= .05f;
                 cloud.transform.position = position;
             }
 
@@ -45,6 +46,52 @@ public class SpawnEnvironement : MonoBehaviour
                 var position = ground.transform.position;
                 position.x -= 20 * Time.deltaTime;
                 ground.transform.position = position;
+            }
+        }
+        else
+        {
+            foreach (var cloud in clouds)
+            {
+                Destroy(cloud);
+            }
+
+            foreach (var ground in grounds)
+            {
+                Destroy(ground);
+            }
+
+            clouds.Clear();
+            grounds.Clear();
+        }
+
+        destroyEnvironementOutCamera();
+    }
+
+    private void destroyEnvironementOutCamera()
+    {
+        int index = 0;
+        while(index < grounds.Count)
+        {
+            if(grounds[index].transform.position.x < _XPosForDestroy)
+            {
+                Destroy(grounds[index]);
+            }
+            else
+            {
+                index++;
+            }
+        }
+        index = 0;
+        while(index < clouds.Count)
+        {
+            if(clouds[index].transform.position.x < _XPosForDestroy)
+            {
+                Destroy(clouds[index]);
+                clouds.RemoveAt(index);
+            }
+            else
+            {
+                index++;
             }
         }
     }
@@ -83,8 +130,18 @@ public class SpawnEnvironement : MonoBehaviour
     {
         GameObject instance = Instantiate(prefabGround, transform);
         instance.name = prefabGround.name;
-        instance.transform.localPosition = new Vector3(50 + Random.Range(-5, .5f), Random.Range(.07f, .125f), Random.Range(-4f, 4f));
-        instance.transform.localScale = new Vector3(Random.Range(.125f/2, .125f), 1, Random.Range(.125f/2, .125f));
+        instance.transform.localPosition = new Vector3(50 + Random.Range(-5, .5f), Random.Range(.025f, .05f), Random.Range(-4f, 4f));
+        var scale = Random.Range(.125f/2, .125f);
+        
+        if(Random.Range(0,1f) < 0.95)
+        {
+            instance.transform.localScale = new Vector3(scale*2, 1, scale*2);
+        }
+        else
+        {
+            instance.transform.localScale = new Vector3(Random.Range(0.5f, 1f), 1, scale);
+        }
+        
         grounds.Add(instance);
     }
 }
