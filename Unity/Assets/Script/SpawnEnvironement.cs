@@ -10,10 +10,26 @@ public class SpawnEnvironement : MonoBehaviour
     public bool _spawn = true;
     private List<GameObject> clouds = new List<GameObject>();
     private List<GameObject> grounds = new List<GameObject>();
+<<<<<<< HEAD
     [SerializeField] private float _XPosForDestroy = -100f;
 
+=======
+    public void SpawnFirstGround()
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            float randx = Random.Range(-20.0f,45.0f);
+            float randz = Random.Range(-3.0f,3.0f);
+            GameObject ground = Instantiate(prefabGround, new Vector3(randx,0.1f,randz),Quaternion.identity);
+            ground.transform.localScale = new Vector3(Random.Range(.125f/2, .125f), 1, Random.Range(.125f/2, .125f));
+            grounds.Add(ground);
+        }
+        
+    }
+>>>>>>> c9b7d63897e881b17a37985433f4dabfb4344527
     private void Awake()
     {
+        SpawnFirstGround();
         if (Instance != null)
         {
             Debug.LogError("Instance of SpawnEnvironement already exist");

@@ -158,7 +158,8 @@ public class GameManager : MonoBehaviour
         {
             OnGameSpeedReset?.Invoke();
         }
-        
+
+        FindObjectOfType<Player>().StartAnimation();
         GlobalGameSpeed = 1f;
         SpawnObstaclesManager.Instance.DeleteAllObstacles();
         UIManager.Instance.ShowMainText(false);
