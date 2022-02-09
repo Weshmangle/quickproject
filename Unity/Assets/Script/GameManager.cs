@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
         _distanceTraveled = 0;
         SpawnObstaclesManager.Instance.StartSpawn();
+        SpawnEnvironement.Instance.StartSpawn();
         _firstStartGame = false;
     }
 }
