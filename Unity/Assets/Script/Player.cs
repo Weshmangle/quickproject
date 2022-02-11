@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float stopCrouchTime, gameTime;
 
     public bool _isGrounded, _isCrouched;
+    public static Player Instance;
     private float jumpHeight = 1.1f;
     private float gravity = -100f;
     private float stepAnimation = 0;
@@ -29,6 +30,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Debug.LogError("Instance of GameManager already exist");
+            return;
+        }
+
+        Instance = this;
+    }
 
     public Vector3 positionGravity;
 
@@ -40,21 +51,6 @@ public class Player : MonoBehaviour
     private bool CalculateIsGrounded()
     {
         return Physics.CheckSphere(transform.position, .1f, groundLayer, QueryTriggerInteraction.Ignore); ;
-    }
-
-    public void OnJump()
-    {
-        Debug.Log("OnJump");
-        if (GameManager.Instance.IsGameOver)
-        {
-            GameManager.Instance.GameStart();
-        }
-        Jump();
-    }
-
-    public void OnCrouch()
-    {
-        Crouch();
     }
 
     void Update()
@@ -75,33 +71,42 @@ public class Player : MonoBehaviour
         _cc.Move(new Vector3(0, 0, 0));
         _cc.Move(positionGravity * Time.deltaTime);
 
+        stepAnimation = (stepAnimation + .05f) % _meshesAnimationNormal.Length;
+
         if (_isCrouched)
-        {
-            var scale = transform.localScale;
-            transform.localScale = scale;
+        {   
+            foreach (var mesh in _meshesAnimationNormal)
+            {
+                mesh.SetActive(false);
+            }
 
             foreach (var item in _meshesAnimationsDown)
             {
                 item.SetActive(false);
             }
 
-            if (Time.time > gameTime + stopCrouchTime)
-            {
-                _isCrouched = false;
-            }
+            _meshesAnimationsDown[Mathf.FloorToInt(stepAnimation)].SetActive(true);
+            
+            _cc.radius = .66f;
+            _cc.height = 1.5f;
+            _cc.center = new Vector3(.25f, _cc.height / 2, 0);
         }
         else
         {
-            var scale = transform.localScale;
-            scale.y = 1f;
-            transform.localScale = scale;
-            stepAnimation = (stepAnimation + .05f) % _meshesAnimationNormal.Length;
-
             foreach (var mesh in _meshesAnimationNormal)
             {
                 mesh.SetActive(false);
             }
+
+            foreach (var mesh in _meshesAnimationsDown)
+            {
+                mesh.SetActive(false);
+            }
+            
             _meshesAnimationNormal[Mathf.FloorToInt(stepAnimation)].SetActive(true);
+            _cc.radius = .5f;
+            _cc.height = 2.65f;
+            _cc.center = new Vector3(.25f, _cc.height / 2, 0);
         }
     }
 

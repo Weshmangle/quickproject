@@ -28,10 +28,29 @@ public class InputManager : MonoBehaviour
 
     private void StartTouch(InputAction.CallbackContext context)
     {
-        Debug.Log("Start Touch " + touchControls.Touch.TouchPosition.ReadValue<Vector2>());
+        if(GameManager.Instance.IsGameOver)
+        {
+            GameManager.Instance.GameStart();
+        }
+        else
+        {
+            var position = touchControls.Touch.TouchPosition.ReadValue<Vector2>();
+            
+            if(position.x < Screen.width / 2)
+            {
+                Player.Instance.Jump();
+            }
+            else
+            {
+                Player.Instance.Crouch();
+            }
+        }
     }
     private void EndTouch(InputAction.CallbackContext context)
     {
-        Debug.Log("end Touch");
+        if(Player.Instance.IsCrouched)
+        {
+            Player.Instance.IsCrouched = false; 
+        }
     }
 }
