@@ -40,12 +40,11 @@ public class InputManager : MonoBehaviour
             
             if(isClickedButtonSpeak(position))
             {
-                Debug.Log("speak");
-                stateSpeaker = (stateSpeaker + 1) % 3;
+                GameManager.Instance.buttonSpeaker.GetComponent<ButtonSpeaker>().Click();
             }
             else if(isClickedButtonAbout(position))
             {
-                Debug.Log("about");
+                GameManager.Instance.buttonAbout.GetComponent<ButtonAbout>().Click();
             }
             else if(position.x < Screen.width / 2)
             {

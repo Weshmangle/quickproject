@@ -47,6 +47,20 @@ public class AudioManager : MonoBehaviour
         _source.Play();
     }
 
+    public void SetOffMusic()
+    {
+        _source.volume = .0f;
+    }
+
+    public void SetMiddleMusic()
+    {
+        _source.volume = .5f;
+    }
+    public void SetOnMusic()
+    {
+        _source.volume = 1.0f;
+    }
+
     public AudioSource PlayClipAt(AudioClip clip, Vector3 pos)
     {
         if (clip == null) return null;
