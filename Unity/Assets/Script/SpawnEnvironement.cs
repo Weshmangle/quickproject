@@ -31,7 +31,7 @@ public class SpawnEnvironement : MonoBehaviour
 
         Instance = this;
     }
-
+    
     public void StartSpawn()
     {    
         foreach (var cloud in clouds)
