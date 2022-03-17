@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public int IncrementPoint = 1;
     public float IncrementPointDelay = .35f;
 
-    [SerializeField] private UnityEngine.UI.Button buttonSpeaker;
-    [SerializeField] private UnityEngine.UI.Button buttonAbout;
+    [SerializeField] public UnityEngine.UI.Button buttonSpeaker;
+    [SerializeField] public UnityEngine.UI.Button buttonAbout;
 
     public float GlobalGameSpeed = 1f;
     public bool IsGameOver
@@ -59,11 +59,6 @@ public class GameManager : MonoBehaviour
         DisplayAllScore();
         remainingTimeBeforeAddScore = IncrementPointDelay;
         AudioManager.Instance.StartMusic();
-    }
-
-    public void lol()
-    {
-        Debug.Log("lol");
     }
 
     private void Update()

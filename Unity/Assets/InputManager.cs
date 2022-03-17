@@ -35,6 +35,8 @@ public class InputManager : MonoBehaviour
         else
         {
             var position = touchControls.Touch.TouchPosition.ReadValue<Vector2>();
+
+            //GameManager.Instance.buttonAbout.transform.
             
             if(position.x < Screen.width / 2)
             {
