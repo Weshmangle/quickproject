@@ -11,6 +11,7 @@ public class SpawnObstaclesManager : MonoBehaviour
     [SerializeField] private GameObject[] _prefabs;
     [SerializeField] private float _minYPosForNotGroundedObject = 1f;
     [SerializeField] private float _maxYPosForNotGroundedObject = 3f;
+    [SerializeField] public float _moveSpeed = 20f;
 
     private bool _spawnObstacle = true;
 
@@ -57,7 +58,11 @@ public class SpawnObstaclesManager : MonoBehaviour
             if(rating <= .75)
                 InstantiateCactus();
             else
+            {
                 InstantiateBird();
+                ReduceSpawnDelay();
+                _moveSpeed += 1;
+            }
         }
     }
 
@@ -97,6 +102,7 @@ public class SpawnObstaclesManager : MonoBehaviour
     public void StartSpawn()
     {
         _spawnObstacle = true;
+        _moveSpeed = 20f;
         StartCoroutine(SpawnAfterTime());
     }
 

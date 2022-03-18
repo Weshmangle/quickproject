@@ -30,23 +30,27 @@ public class InputManager : MonoBehaviour
 
     private void StartTouch(InputAction.CallbackContext context)
     {
-        if(GameManager.Instance.IsGameOver)
+        var position = touchControls.Touch.TouchPosition.ReadValue<Vector2>();
+
+        if(isClickedButtonSpeak(position))
+        {
+            GameManager.Instance.buttonSpeaker.GetComponent<ButtonSpeaker>().Click();
+        }
+        else if(isClickedButtonAbout(position))
+        {
+            GameManager.Instance.buttonAbout.GetComponent<ButtonAbout>().Click();
+        }
+        else if(GameManager.Instance.buttonAbout.GetComponent<ButtonAbout>().popup.IsActive())
+        {
+            GameManager.Instance.buttonAbout.GetComponent<ButtonAbout>().Click();
+        }
+        else if(GameManager.Instance.IsGameOver)
         {
             GameManager.Instance.GameStart();
         }
         else
         {
-            var position = touchControls.Touch.TouchPosition.ReadValue<Vector2>();
-            
-            if(isClickedButtonSpeak(position))
-            {
-                GameManager.Instance.buttonSpeaker.GetComponent<ButtonSpeaker>().Click();
-            }
-            else if(isClickedButtonAbout(position))
-            {
-                GameManager.Instance.buttonAbout.GetComponent<ButtonAbout>().Click();
-            }
-            else if(position.x < Screen.width / 2)
+            if(position.x < Screen.width / 2)
             {
                 Player.Instance.Jump(); 
             }

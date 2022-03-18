@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
         _cc.Move(new Vector3(0, 0, 0));
         _cc.Move(positionGravity * Time.deltaTime);
 
-        stepAnimation = (stepAnimation + .05f) % _meshesAnimationNormal.Length;
+        stepAnimation = (stepAnimation + .075f) % _meshesAnimationNormal.Length;
 
         if (_isCrouched)
         {   

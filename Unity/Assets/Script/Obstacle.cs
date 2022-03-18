@@ -5,7 +5,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float _moveSpeed = 1;
     [SerializeField] private float _moveSpeedIncreaseValue = 1;
     [SerializeField] private float _XPosForDestroy = -100f;
-    [SerializeField] private float _maxMoveSpeed = 50f;
+    [SerializeField] public float _maxMoveSpeed = 50f;
 
     private float _actualMoveSpeed;
 
@@ -13,7 +13,7 @@ public class Obstacle : MonoBehaviour
 
     private void Start()
     {
-        _actualMoveSpeed = _moveSpeed;
+        _actualMoveSpeed = SpawnObstaclesManager.Instance._moveSpeed;
         GameManager.Instance.OnGameSpeedChanged += IncreaseMoveSpeed;
     }
 

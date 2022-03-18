@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ButtonAbout : MonoBehaviour
 {
     protected float valueAnimation = 0;
+    [SerializeField] public Button popup;
 
     void Start()
     {
@@ -25,5 +26,6 @@ public class ButtonAbout : MonoBehaviour
         var rectTransform = GetComponent<RectTransform>();
         rectTransform.localScale = new Vector3(1.2f,1.2f,1);
         valueAnimation = 0;
+        popup.gameObject.SetActive(!popup.gameObject.activeSelf);
     }
 }

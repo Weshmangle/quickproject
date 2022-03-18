@@ -19,7 +19,7 @@ public class Environnement : MonoBehaviour
     protected void moveGround()
     {
         var position = transform.position;
-        position.x -= 20 * Time.deltaTime;
+        position.x -= SpawnObstaclesManager.Instance._moveSpeed * Time.deltaTime;
         transform.position = position;
     } 
 
