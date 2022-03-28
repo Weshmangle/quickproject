@@ -53,7 +53,7 @@ public class Player : MonoBehaviour
         return Physics.CheckSphere(transform.position, .1f, groundLayer, QueryTriggerInteraction.Ignore); ;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameManager.Instance.IsGameOver) return;
 

@@ -7,12 +7,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _scorePointForAugmentGameSpeed = 15;
     [SerializeField] private float _speedGameAddValue = .15f;
 
+    [SerializeField] public UnityEngine.UI.Button buttonSpeaker;
+
+    [SerializeField] public UnityEngine.UI.Button buttonAbout;
+
     public static GameManager Instance;
     public int IncrementPoint = 1;
     public float IncrementPointDelay = .35f;
-
-    [SerializeField] public UnityEngine.UI.Button buttonSpeaker;
-    [SerializeField] public UnityEngine.UI.Button buttonAbout;
 
     public float GlobalGameSpeed = 1f;
     public bool IsGameOver
@@ -55,7 +56,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("lol.Start");
         DisplayAllScore();
         remainingTimeBeforeAddScore = IncrementPointDelay;
         AudioManager.Instance.StartMusic();
@@ -63,14 +63,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        /*if(Input.GetMouseButton(0) && IsGameOver)
-        {
-            IsGameOver = false;
-            GameStart();
-        }*/
-
         var scale = ground.transform.localScale;
-        //scale.x = Screen.width / 15;
+        
         ground.transform.localScale = scale;
 
         if (!IsGameOver)
@@ -114,6 +108,7 @@ public class GameManager : MonoBehaviour
 
         _distanceTraveled = 0;
         UIManager.Instance.ShowHideBestText(true);
+        buttonAbout.gameObject.SetActive(true);
     }
 
 
@@ -172,5 +167,7 @@ public class GameManager : MonoBehaviour
         SpawnObstaclesManager.Instance.StartSpawn();
         SpawnEnvironement.Instance.StartSpawn();
         _firstStartGame = false;
+        buttonAbout.gameObject.SetActive(false);
+        buttonSpeaker.gameObject.SetActive(true);
     }
 }

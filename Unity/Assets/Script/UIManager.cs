@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance;
 
     [SerializeField] private Text _scoreText, _lastScoreText, _bestScoreText, _mainText;
+    [SerializeField] public Resolution res;
 
     private void Awake()
     {
@@ -17,9 +18,27 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
+    protected void ChangePositionUI()
+    {
+        if(true)
+        {
+            _scoreText.GetComponent<RectTransform>().anchorMin = new Vector2(1, .5f);
+            _lastScoreText.GetComponent<RectTransform>().anchorMin = new Vector2(1, .5f);
+            _lastScoreText.GetComponent<RectTransform>().position = new Vector3(-25, 50, 0);
+        }
+        else
+        {
+            _scoreText.GetComponent<RectTransform>().anchorMin = new Vector2(.5f, 1);
+            _lastScoreText.GetComponent<RectTransform>().anchorMin = new Vector2(.5f, 1);
+            _lastScoreText.GetComponent<RectTransform>().position = new Vector3(113.3697f, 0, 0);
+        }
+    }
+
     private void Update()
     {
         var position = transform.position;
+        res = Screen.currentResolution;
+        Debug.Log(Screen.currentResolution);
     }
 
     public void OnStartGame()
