@@ -71,7 +71,7 @@ public class SpawnEnvironement : MonoBehaviour
         if(Screen.orientation == ScreenOrientation.Portrait)
         {
             position.z = 28;
-            position.x = -6;
+            position.x = -3;
         }
         else
         {
