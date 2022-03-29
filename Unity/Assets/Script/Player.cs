@@ -108,6 +108,21 @@ public class Player : MonoBehaviour
             _cc.height = 2.65f;
             _cc.center = new Vector3(.25f, _cc.height / 2, 0);
         }
+
+        var position = transform.position;
+
+        if(Screen.orientation == ScreenOrientation.Portrait)
+        {
+            position.z = 28;
+            position.x = -6;
+        }
+        else
+        {
+            position.z = 0;
+            position.x = -10;
+        }
+
+        transform.position = position;
     }
 
     public void Jump()

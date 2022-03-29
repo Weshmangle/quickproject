@@ -66,6 +66,20 @@ public class SpawnEnvironement : MonoBehaviour
 
     public void Update()
     {
+        var position = transform.position;
+        Debug.Log(Screen.orientation);
+        if(Screen.orientation == ScreenOrientation.Portrait)
+        {
+            position.z = 28;
+            position.x = -6;
+        }
+        else
+        {
+            position.z = 0;
+            position.x = -10;
+        }
+        
+        transform.position = position;
     }
 
     private IEnumerator SpawnClouds()

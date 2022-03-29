@@ -18,27 +18,10 @@ public class UIManager : MonoBehaviour
         Instance = this;
     }
 
-    protected void ChangePositionUI()
-    {
-        if(true)
-        {
-            _scoreText.GetComponent<RectTransform>().anchorMin = new Vector2(1, .5f);
-            _lastScoreText.GetComponent<RectTransform>().anchorMin = new Vector2(1, .5f);
-            _lastScoreText.GetComponent<RectTransform>().position = new Vector3(-25, 50, 0);
-        }
-        else
-        {
-            _scoreText.GetComponent<RectTransform>().anchorMin = new Vector2(.5f, 1);
-            _lastScoreText.GetComponent<RectTransform>().anchorMin = new Vector2(.5f, 1);
-            _lastScoreText.GetComponent<RectTransform>().position = new Vector3(113.3697f, 0, 0);
-        }
-    }
-
     private void Update()
     {
         var position = transform.position;
         res = Screen.currentResolution;
-        Debug.Log(Screen.currentResolution);
     }
 
     public void OnStartGame()
@@ -74,7 +57,7 @@ public class UIManager : MonoBehaviour
 
     public void SetLastScore(int score)
     {
-        _lastScoreText.text = $"LAST:{score}";
+        //_lastScoreText.text = $"LAST:{score}";
     }
 
     public void StartGame()
