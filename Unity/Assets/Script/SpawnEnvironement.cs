@@ -9,6 +9,12 @@ public class SpawnEnvironement : MonoBehaviour
     public Environnement prefabGround;
     public bool _spawn = true;
 
+    void Start()
+    {
+        SpawnGround();
+        SpawnClouds();
+    }
+
     public void SpawnGround() 
     {
         for (int i = 0; i < 100; i++)
@@ -40,8 +46,10 @@ public class SpawnEnvironement : MonoBehaviour
     
     public void StartSpawn()
     {
-        SpawnGround();
-        SpawnClouds();
+        foreach (var env in GetComponentsInChildren<Environnement>())
+        {
+            //env.ResetPosition();
+        }
     }
 
     private Vector3 InstantiateCloud(float originPosition)

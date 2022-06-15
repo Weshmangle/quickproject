@@ -21,6 +21,19 @@ public class Environnement : MonoBehaviour
         transform.position = new Vector3(25 + (50 * Random.Range(0.5f,1)), Random.Range(5f, 15f), 15);
     }
 
+    public void ResetPosition()
+    {
+        switch (type)
+        {
+            case "ground":
+                ResetPositionGround();
+                break;
+            case "cloud":
+                ResetPositionCloud();
+                break;
+        }
+    }
+
     protected void MoveGround()
     {
         var position = transform.position;
@@ -59,11 +72,9 @@ public class Environnement : MonoBehaviour
         }
     }
 
-    void Update()
+    public void UpdatePosition()
     {
-        if(!GameManager.Instance.IsGameOver)
-        {    
-            switch (type)
+        switch (type)
             {
                 case "ground":
                     UpdateGround();
@@ -72,6 +83,13 @@ public class Environnement : MonoBehaviour
                     UpdateCloud();
                     break;
             }
+    }
+
+    void Update()
+    {
+        if(!GameManager.Instance.IsGameOver)
+        {    
+            UpdatePosition();
         }
     }
 }
