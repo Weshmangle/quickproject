@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Environnement : MonoBehaviour
 {
-    [SerializeField] private float _XPosForDestroy = -30f;
+    [SerializeField] private float _XPosForDestroy = -35f;
     public string type;
     
     void Start()
@@ -16,12 +16,24 @@ public class Environnement : MonoBehaviour
         transform.localPosition = new Vector3(50 + Random.Range(-5, .5f), Random.Range(.025f, .05f), Random.Range(-4f, 4f));
     }
 
-    protected void moveGround()
+    public void ResetPositionCloud()
+    {
+        transform.position = new Vector3(25 + (50 * Random.Range(0.5f,1)), Random.Range(5f, 15f), 15);
+    }
+
+    protected void MoveGround()
     {
         var position = transform.position;
         position.x -= SpawnObstaclesManager.Instance._moveSpeed * Time.deltaTime;
         transform.position = position;
     } 
+
+    public void MoveCloud()
+    {
+        var position = transform.position;
+        position.x -= SpawnObstaclesManager.Instance._moveSpeed * Time.deltaTime * .5f;
+        transform.position = position;
+    }
 
     protected void UpdateGround()
     {
@@ -31,22 +43,35 @@ public class Environnement : MonoBehaviour
         }
         else
         {
-            if(!GameManager.Instance.IsGameOver)
-            {
-                moveGround();
-            }
+            MoveGround();
+        }
+    }
+
+    public void UpdateCloud()
+    {
+        if(transform.position.x < _XPosForDestroy)
+        {
+            ResetPositionCloud();
+        }
+        else
+        {
+            MoveCloud();
         }
     }
 
     void Update()
     {
-        switch (type)
-        {
-            case "ground":
-                UpdateGround();
-                break;
-            case "cloud":
-                break;
+        if(!GameManager.Instance.IsGameOver)
+        {    
+            switch (type)
+            {
+                case "ground":
+                    UpdateGround();
+                    break;
+                case "cloud":
+                    UpdateCloud();
+                    break;
+            }
         }
     }
 }

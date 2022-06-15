@@ -12,6 +12,8 @@ public class SpawnObstaclesManager : MonoBehaviour
     [SerializeField] private float _minYPosForNotGroundedObject = 1f;
     [SerializeField] private float _maxYPosForNotGroundedObject = 3f;
     [SerializeField] public float _moveSpeed = 20f;
+    
+    protected GameObject lastObstacle;
 
     private bool _spawnObstacle = true;
 

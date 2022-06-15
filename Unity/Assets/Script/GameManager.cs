@@ -6,15 +6,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject ground;
     [SerializeField] private int _scorePointForAugmentGameSpeed = 15;
     [SerializeField] private float _speedGameAddValue = .15f;
-
     [SerializeField] public UnityEngine.UI.Button buttonSpeaker;
-
     [SerializeField] public UnityEngine.UI.Button buttonAbout;
-
     public static GameManager Instance;
     public int IncrementPoint = 1;
     public float IncrementPointDelay = .35f;
-
     public float GlobalGameSpeed = 1f;
     public bool IsGameOver
     {

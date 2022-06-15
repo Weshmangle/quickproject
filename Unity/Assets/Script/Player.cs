@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private float stopCrouchTime, gameTime;
 
-    public bool _isGrounded, _isCrouched;
+    public bool _isGrounded, _isCrouched, _jumping;
     public static Player Instance;
     private float jumpHeight = 1.1f;
     private float gravity = -100f;
@@ -58,6 +58,13 @@ public class Player : MonoBehaviour
         if (GameManager.Instance.IsGameOver) return;
 
         _isGrounded = CalculateIsGrounded();
+        
+        if(_jumping && _isGrounded)
+        {
+            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity) * 2;
+            AudioManager.Instance.PlayClipAt(_jumpSound, transform.position);
+            _jumping = true;
+        }
 
         if (_isGrounded && positionGravity.y < 0)
         {
@@ -108,29 +115,15 @@ public class Player : MonoBehaviour
             _cc.height = 2.65f;
             _cc.center = new Vector3(.25f, _cc.height / 2, 0);
         }
-
-        var position = transform.position;
-
-        if(Screen.orientation == ScreenOrientation.Portrait)
-        {
-            position.z = 28;
-            position.x = -6;
-        }
-        else
-        {
-            position.z = 0;
-            position.x = -10;
-        }
-
-        transform.position = position;
     }
 
     public void Jump()
     {
-        if (_isGrounded )
+        Debug.Log($"{_isGrounded} {transform.position}");
+
+        if (_isGrounded)
         {
-            positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity) * 2;
-            AudioManager.Instance.PlayClipAt(_jumpSound, transform.position);
+            _jumping = true;
         }
     }
     public void Crouch()

@@ -52,7 +52,7 @@ public class InputManager : MonoBehaviour
         {
             if(position.x < Screen.width / 2)
             {
-                Player.Instance.Jump(); 
+                Player.Instance.Jump();
             }
             else
             {
@@ -63,10 +63,8 @@ public class InputManager : MonoBehaviour
     
     private void EndTouch(InputAction.CallbackContext context)
     {
-        if(Player.Instance.IsCrouched)
-        {
-            Player.Instance.IsCrouched = false; 
-        }
+        Player.Instance.IsCrouched = false;
+        Player.Instance._jumping = false;
     }
 
     private bool isClickedButton(Button button, Vector2 position)

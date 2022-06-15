@@ -8,16 +8,22 @@ public class SpawnEnvironement : MonoBehaviour
     public Environnement prefabCloud;
     public Environnement prefabGround;
     public bool _spawn = true;
-    private List<Environnement> clouds = new List<Environnement>();
-    private List<Environnement> grounds = new List<Environnement>();
-    private IEnumerator IEClouds;
-    private IEnumerator IEGrounds;
 
-    public void SpawnFirstGround() 
+    public void SpawnGround() 
     {
         for (int i = 0; i < 100; i++)
         {
             InstantiateGround();
+        }
+    }
+
+    public void SpawnClouds()
+    {
+        Vector3 position = Vector3.zero;
+        
+        for (int i = 0; i < 5; i++)
+        {
+            position = InstantiateCloud(position.x);
         }
     }
 
@@ -33,72 +39,18 @@ public class SpawnEnvironement : MonoBehaviour
     }
     
     public void StartSpawn()
-    {    
-        foreach (var cloud in clouds)
-        {
-            Destroy(cloud.gameObject);
-        }
-
-        foreach (var ground in grounds)
-        {
-            Destroy(ground.gameObject);
-        }
-
-        clouds.Clear();
-        grounds.Clear();
-
-        SpawnFirstGround();
-
-        if(IEClouds != null)
-        {
-            StopCoroutine(IEClouds);
-        }
-
-        if(IEGrounds != null)
-        {
-            StopCoroutine(IEGrounds);
-        }
-
-        IEClouds = SpawnClouds();
-        
-        StartCoroutine(IEClouds);
-    }
-
-    public void Update()
     {
-        var position = transform.position;
-        Debug.Log(Screen.orientation);
-        if(Screen.orientation == ScreenOrientation.Portrait)
-        {
-            position.z = 28;
-            position.x = -3;
-        }
-        else
-        {
-            position.z = 0;
-            position.x = -10;
-        }
-        
-        transform.position = position;
+        SpawnGround();
+        SpawnClouds();
     }
 
-    private IEnumerator SpawnClouds()
-    {
-        while (_spawn)
-        {   
-            yield return new WaitForSeconds(Random.Range(1.5f, 3.5f));
-
-            InstantiateCloud();
-        }
-    }
-
-    private void InstantiateCloud()
+    private Vector3 InstantiateCloud(float originPosition)
     {
         Environnement instance = Instantiate<Environnement>(prefabCloud, transform);
         instance.name = prefabCloud.name;
         instance.type = "cloud";
-        instance.transform.localPosition = new Vector3(50, Random.Range(5f, 15f), 15);
-        clouds.Add(instance);
+        instance.transform.localPosition = new Vector3(originPosition + 25 + (50 * Random.Range(0.5f,1)), Random.Range(5f, 15f), 15);
+        return instance.transform.position;
     }
 
     private void InstantiateGround()
@@ -117,7 +69,5 @@ public class SpawnEnvironement : MonoBehaviour
         {
             instance.transform.localScale = new Vector3(Random.Range(0.5f, 1f), 1, scale);
         }
-        
-        grounds.Add(instance);
     }
 }

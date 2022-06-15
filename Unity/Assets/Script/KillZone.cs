@@ -7,7 +7,7 @@ public class KillZone : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            other.GetComponentInParent<Player>().Die();
+             other.GetComponentInParent<Player>().Die();
         }
     }
 }
