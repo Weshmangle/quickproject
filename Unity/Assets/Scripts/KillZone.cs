@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class KillZone : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
