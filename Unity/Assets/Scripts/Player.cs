@@ -8,7 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _animationDuration;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask obstacleLayer;
-    [SerializeField] private AudioClip _jumpSound;
     [SerializeField] private float stopCrouchTime, gameTime;
 
     public bool _isGrounded, _isCrouched, _jump;
@@ -62,7 +61,7 @@ public class Player : MonoBehaviour
         if(_jump && _isGrounded)
         {
             positionGravity.y += Mathf.Sqrt(jumpHeight * -2 * gravity) * 2;
-            AudioManager.Instance.PlayClipAt(_jumpSound, transform.position);
+            AudioManager.Instance.PlayBeepJump();
             _jump = false;
         }
 

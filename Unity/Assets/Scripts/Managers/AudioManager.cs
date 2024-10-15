@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 public class AudioManager : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _musics;
+    [SerializeField] private AudioSource _jumpSound;
     [SerializeField] private AudioSource _source;
     [SerializeField] AudioMixerGroup _soundEffectMixer;
     [SerializeField] private float _pitchBoostValue = .01f;
@@ -64,6 +65,13 @@ public class AudioManager : MonoBehaviour
     {
         _source.volume = 1.0f;
         stateVolume = "on";
+    }
+
+    public void PlayBeepJump()
+    {
+        Debug.Log("Play");
+        if(!_jumpSound.isPlaying)
+            _jumpSound.Play();
     }
 
     public AudioSource PlayClipAt(AudioClip clip, Vector3 pos)

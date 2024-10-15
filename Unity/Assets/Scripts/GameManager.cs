@@ -155,7 +155,6 @@ public class GameManager : MonoBehaviour
         }
 
         GlobalGameSpeed = 1f;
-        SpawnObstaclesManager.Instance.DeleteAllObstacles();
         UIManager.Instance.ShowMainText(false);
         IsGameOver = false;
         Time.timeScale = 1;
