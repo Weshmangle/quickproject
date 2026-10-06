@@ -1,5 +1,6 @@
 {
-    "name": "TouchControl",
+    "version": 1,
+    "name": "TouchControls",
     "maps": [
         {
             "name": "Touch",
